@@ -1,32 +1,43 @@
-// 41. Classes Abstraites - Abstract
+// 42. Generics
 
-abstract class Person {
-  constructor(public name: string) {    // Constructeur de la classe abstraite "Person" qui prend un paramètre "name" de type string et le rend accessible en tant que propriété publique (public)
-  }
+let colors = ["red","green", "blue"]
+let colors2:Array<string>=[]
 
-  walk() {
-    console.log('je suis ');    // Méthode "walk" de la classe abstraite "Person" qui affiche un message dans la console
-  }
+// let list :number[]=[1,2,3,] //la même chose 
+// let list: Array<number>=[1,2,3,]//la même chose 
 
-  abstract updateName(name: string): void;  // Méthode abstraite "updateName" qui prend un paramètre "name" de type string et ne renvoie aucune valeur (void)
+function identity(arg:number):number{
+return arg
 }
 
-abstract class Car {
-  abstract updateName(name: string): void;  // Méthode abstraite "updateName" qui prend un paramètre "name" de type string et ne renvoie aucune valeur (void)
+console.log(identity(200));
+function identity2(arg:any):any{
+return arg
 }
+let output=identity2("hello")
+ 
+console.log(identity2("Hello"));
+console.log(identity2(true));
 
-class Child extends Person {
-  updateName(name: string) {    // Implémentation de la méthode abstraite "updateName" de la classe "Person" dans la classe dérivée "Child"
-    this.name = name;
-    console.log(this.name);    // Assignation du paramètre "name" à la propriété "name" de la classe et affichage de la nouvelle valeur dans la console
+function identity3<T>(arg:T):T{
+return arg
+}
+let output1=identity3("hello")
+let output2=identity3(200)
+
+function identity4<T extends {title:string}>(arg:T):T{
+  return arg
   }
-}
-
-let mario = new Child("mario");// Instanciation d'un objet "mario" de la classe "Child" avec le paramètre "name" spécifié comme "mario"
-console.log(mario.name);// Affiche la valeur de la propriété "name" de l'objet "mario"
-mario.updateName("Sony");// Appel de la méthode "updateName" de l'objet "mario" avec le paramètre "name" spécifié comme "Sony"
-mario.walk();// Appel de la méthode "walk" de l'objet "mario"
+  let output3=identity4({title:"Hello World"})
 
 
-const person1 = new Person('Toto')
-person1.walk()
+  const objOne  = {name: "bart"}
+  const objTwo  = {age: 8}
+  function objInArray<N extends {name:string}, A  extends {age:number}>(n:N, a:A){
+    let data: Array<object>=[]
+    data.push(n,a)
+    return data
+   
+    }
+    const user = objInArray(objOne, objTwo)
+    console.log(user);//un array d'objets 
