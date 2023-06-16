@@ -351,9 +351,9 @@ afficherPersonne(personne2); // Affiche "Nom: Bob, Age: 25, Adresse: Paris"
 ```
 > Dans cet exemple, nous définissons une interface "Personne" qui spécifie les propriétés attendues : "nom" de type "string" et "age" de type "number". La propriété "adresse" est facultative grâce à l'opérateur "?".
 
-Ensuite, nous déclarons une fonction "afficherPersonne" qui prend en paramètre un objet de type "Personne" et affiche ses détails. Si la propriété "adresse" est présente, elle est également affichée.
+> Ensuite, nous déclarons une fonction "afficherPersonne" qui prend en paramètre un objet de type "Personne" et affiche ses détails. Si la propriété "adresse" est présente, elle est également affichée.
 
-Nous créons deux objets "personne1" et "personne2" qui correspondent à la structure de l'interface "Personne". Nous utilisons ensuite la fonction "afficherPersonne" pour afficher les détails de chaque personne.
+> Nous créons deux objets "personne1" et "personne2" qui correspondent à la structure de l'interface "Personne". Nous utilisons ensuite la fonction "afficherPersonne" pour afficher les détails de chaque personne.
 
 > "Les interfaces permettent de définir des contrats ou des structures de données réutilisables, en spécifiant les propriétés et les méthodes attendues dans un objet. Cela facilite la création de structures de données cohérentes et l'interopérabilité entre différentes parties du code."
 
@@ -387,13 +387,13 @@ faireDuBruitAnimaux([chien, chat]); // Affiche "Chien : Fait Wouaf!" suivi de "C
 ```
 > Dans cet exemple, nous définissons une interface "Animal" avec une méthode "faireDuBruit" qui ne renvoie rien (void).
 
-Ensuite, nous définissons deux classes : "Chien" et "Chat", qui implémentent l'interface "Animal" en fournissant une implémentation pour la méthode "faireDuBruit".
+> Ensuite, nous définissons deux classes : "Chien" et "Chat", qui implémentent l'interface "Animal" en fournissant une implémentation pour la méthode "faireDuBruit".
 
-Nous déclarons également une fonction "faireDuBruitAnimaux" qui prend un tableau d'animaux de type "Animal[]" en paramètre. Cette fonction itère sur chaque animal du tableau et appelle la méthode "faireDuBruit".
+> Nous déclarons également une fonction "faireDuBruitAnimaux" qui prend un tableau d'animaux de type "Animal[]" en paramètre. Cette fonction itère sur chaque animal du tableau et appelle la méthode "faireDuBruit".
 
-Nous créons des instances de "Chien" et "Chat" et les passons à la fonction "faireDuBruitAnimaux". Le résultat est l'affichage du bruit spécifique à chaque animal : "Chien : Fait Wouaf!" suivi de "Chat : Fait Miaou!".
+> Nous créons des instances de "Chien" et "Chat" et les passons à la fonction "faireDuBruitAnimaux". Le résultat est l'affichage du bruit spécifique à chaque animal : "Chien : Fait Wouaf!" suivi de "Chat : Fait Miaou!".
 
-L'utilisation d'interfaces avec les classes permet de définir un contrat commun pour les méthodes que les classes doivent implémenter. Cela facilite le polymorphisme et l'utilisation de différentes classes de manière interchangeable.
+> L'utilisation d'interfaces avec les classes permet de définir un contrat commun pour les méthodes que les classes doivent implémenter. Cela facilite le polymorphisme et l'utilisation de différentes classes de manière interchangeable.
 
 
 
@@ -427,15 +427,15 @@ carre.afficherDetails(); // Affiche "Surface: 25, Périmètre: 20"
 ```
 > Dans cet exemple, nous utilisons le mot-clé "abstract" pour définir une classe abstraite "Forme". Une classe abstraite ne peut pas être instanciée directement, mais elle sert de classe de base pour d'autres classes qui en héritent.
 
-La classe abstraite "Forme" déclare deux méthodes abstraites : "calculerSurface" et "calculerPerimetre". Ces méthodes sont définies dans les classes dérivées, et chaque classe dérivée doit fournir une implémentation pour ces méthodes.
+> La classe abstraite "Forme" déclare deux méthodes abstraites : "calculerSurface" et "calculerPerimetre". Ces méthodes sont définies dans les classes dérivées, et chaque classe dérivée doit fournir une implémentation pour ces méthodes.
 
-La classe abstraite "Forme" fournit également une méthode concrète "afficherDetails" qui utilise les méthodes abstraites pour afficher la surface et le périmètre d'une forme.
+> La classe abstraite "Forme" fournit également une méthode concrète "afficherDetails" qui utilise les méthodes abstraites pour afficher la surface et le périmètre d'une forme.
 
-Nous créons une classe dérivée "Carre" qui étend la classe abstraite "Forme". Cette classe implémente les méthodes abstraites "calculerSurface" et "calculerPerimetre" en fonction des spécificités du carré.
+> Nous créons une classe dérivée "Carre" qui étend la classe abstraite "Forme". Cette classe implémente les méthodes abstraites "calculerSurface" et "calculerPerimetre" en fonction des spécificités du carré.
 
-Nous créons ensuite une instance de "Carre" avec une longueur de côté de 5 et appelons la méthode "afficherDetails" pour afficher la surface et le périmètre du carré.
+> Nous créons ensuite une instance de "Carre" avec une longueur de côté de 5 et appelons la méthode "afficherDetails" pour afficher la surface et le périmètre du carré.
 
-Les classes abstraites sont utiles pour définir des modèles communs et des comportements généraux, tout en laissant les détails d'implémentation aux classes dérivées. Elles fournissent une structure de base solide pour l'héritage et le polymorphisme.
+> Les classes abstraites sont utiles pour définir des modèles communs et des comportements généraux, tout en laissant les détails d'implémentation aux classes dérivées. Elles fournissent une structure de base solide pour l'héritage et le polymorphisme.
 
 
 ## 42 - Generics
@@ -457,6 +457,28 @@ console.log(premierMot); // Affiche le premier élément du tableau : "Bonjour"
 ```
 > Dans cet exemple, nous utilisons les generics pour créer une fonction générique "premierElement". Cette fonction prend un tableau de type "T[]" en paramètre et renvoie le premier élément du tableau de type "T" ou "undefined" si le tableau est vide.
 
-Nous déclarons deux tableaux : "nombres" contenant des nombres et "chaines" contenant des chaînes de caractères. En appelant la fonction "premierElement" avec ces tableaux, nous obtenons le premier élément de chaque tableau.
+> Nous déclarons deux tableaux : "nombres" contenant des nombres et "chaines" contenant des chaînes de caractères. En appelant la fonction "premierElement" avec ces tableaux, nous obtenons le premier élément de chaque tableau.
 
-L'utilisation des generics permet de créer des fonctions et des structures de données réutilisables et flexibles. Les generics permettent de créer du code générique qui peut fonctionner avec différents types de données, en évitant la duplication de code spécifique à chaque type.
+> L'utilisation des generics permet de créer des fonctions et des structures de données réutilisables et flexibles. Les generics permettent de créer du code générique qui peut fonctionner avec différents types de données, en évitant la duplication de code spécifique à chaque type.
+
+
+## 43 - Generics avec Interfaces
+```typescript
+// TypeScript:
+interface Boite<T> {
+  contenu: T;
+}
+
+let boiteNombre: Boite<number> = { contenu: 42 };
+console.log(boiteNombre.contenu); // Affiche le contenu de la boîte : 42
+
+let boiteChaine: Boite<string> = { contenu: "Bonjour" };
+console.log(boiteChaine.contenu); // Affiche le contenu de la boîte : "Bonjour"
+```
+> Dans cet exemple, nous utilisons les generics avec une interface "Boite". L'interface "Boite" est définie avec un type générique "T" qui représente le type du contenu de la boîte.
+
+> Nous déclarons une variable "boiteNombre" de type "Boite<number>" qui contient le nombre 42. En accédant à la propriété "contenu" de la boîte, nous obtenons le nombre 42.
+
+> De même, nous déclarons une variable "boiteChaine" de type "Boite<string>" qui contient la chaîne de caractères "Bonjour". En accédant à la propriété "contenu" de la boîte, nous obtenons la chaîne de caractères "Bonjour".
+
+> L'utilisation des generics avec les interfaces permet de créer des structures de données réutilisables qui peuvent contenir différents types de données. Cela offre une grande flexibilité dans la manipulation des données.
