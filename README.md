@@ -36,21 +36,21 @@ console.log(nom.charAt(0));
 > Dans cet exemple, en utilisant Visual Studio Code avec TypeScript, lorsque vous tapez "nom.", l'IntelliSense vous proposera des options, comme "charAt", qui est une méthode disponible pour les chaînes de caractères. Cela améliore la productivité du développeur en fournissant des suggestions contextuelles.
 
 ## 3 - Type Array:
-```TypeScript:
+```typescript
 let nombres: number[] = [1, 2, 3, 4, 5];
 console.log(nombres);
 ```
 > Dans cet exemple, nous déclarons un tableau de nombres en utilisant le type "number[]". Cela indique que seules les valeurs numériques sont autorisées dans le tableau.
 
 ## 4 - Type Tuple:
-```TypeScript:
+```typescript
 let coordonnees: [number, number] = [10, 20];
 console.log(coordonnees);
 ```
 > Dans cet exemple, nous déclarons un tuple en utilisant le type "[number, number]". Un tuple est un tableau de taille fixe où chaque élément peut avoir un type spécifique. Ici, le tuple contient deux nombres.
 
 ## 5 - enum:
-```TypeScript:
+```typescript
 enum Couleur {
   Rouge,
   Vert,
@@ -63,7 +63,7 @@ console.log(couleurPreferee);
 > Dans cet exemple, nous définissons une énumération "Couleur" avec différentes valeurs. Ensuite, nous déclarons une variable "couleurPreferee" de type "Couleur" et lui attribuons la valeur "Vert". Les énumérations permettent de créer un ensemble de valeurs nommées.
 
 ## 6 - Type Any:
-```TypeScript:
+```typescript
 let variable: any = "Bonjour";
 console.log(variable);
 ```
@@ -71,14 +71,14 @@ console.log(variable);
 
 ** très depresié cas on peut faire ce qu'on veux et pas d'erreur  **
 ## 20 - Type Unknown:
-```TypeScript:
+```typescript
 let valeur: unknown = 10;
 console.log(valeur);
 ```
 > Dans cet exemple, nous utilisons le type "unknown" pour déclarer une variable "valeur". Le type "unknown" est similaire au type "any", mais il impose des vérifications de type avant toute utilisation de la variable.
 
 ## 21 - Type Void:
-```TypeScript:
+```typescript
 function afficherMessage(): void {
   console.log("Hello, world!");
 }
@@ -88,7 +88,7 @@ afficherMessage();
 > Dans cet exemple, nous définissons une fonction "afficherMessage" qui ne renvoie aucune valeur (void). Elle se contente d'afficher un message à l'écran à l'aide de la fonction "console.log".
 
 ## 22 - Type Function:
-```TypeScript:
+```typescript
 let ajouter: (a: number, b: number) => number = function (a, b) {
   return a + b;
 };
@@ -110,7 +110,7 @@ afficherMessage("Bonjour!", "Alerte: "); // Affiche "Alerte: Bonjour!"
 > Dans cet exemple, nous définissons une fonction "afficherMessage" qui prend un paramètre obligatoire "message" de type string, et un paramètre facultatif "prefixe" de type string avec une valeur par défaut "Info: ". Si aucun argument n'est fourni pour "prefixe", la valeur par défaut sera utilisée lors de l'appel de la fonction.
 
 ## 24 - Type Rest
-```TypeScript:
+```typescript
 function afficherNombres(...nombres: number[]) {
   console.log(nombres);
 }
@@ -121,7 +121,7 @@ afficherNombres(10, 20); // Affiche [10, 20]
 > Dans cet exemple, nous utilisons le type Rest "..." pour déclarer un paramètre qui accepte un nombre variable d'arguments de type number. Les arguments fournis seront regroupés dans un tableau lors de l'appel de la fonction.
 
 ## 25 - Callback Function Type
-```TypeScript:
+```typescript
 function effectuerOperation(nombre: number, operation: (num: number) => number) {
   const resultat = operation(nombre);
   console.log(resultat);
@@ -136,7 +136,7 @@ effectuerOperation(5, doubler); // Affiche 10
 > Dans cet exemple, nous définissons une fonction "effectuerOperation" qui prend un nombre et une fonction de rappel "operation". La fonction de rappel "doubler" est définie séparément et accepte un nombre et renvoie le résultat de la multiplication par 2. Lors de l'appel de "effectuerOperation", nous passons le nombre 5 et la fonction "doubler" en tant que fonction de rappel.
 
 ## 26 - Union Types
-```TypeScript:
+```typescript
 let identifiant: string | number;
 identifiant = "abc";
 console.log(identifiant); // Affiche "abc"
@@ -147,7 +147,7 @@ console.log(identifiant); // Affiche 123
 > Dans cet exemple, la variable "identifiant" peut être de type "string" ou "number". On peut lui assigner une valeur de l'un ou l'autre type.
 
 ## 27 - Type Aliases
-```TypeScript:
+```typescript
 type Coordonnees = [number, number];
 
 let point: Coordonnees = [10, 20];
@@ -156,7 +156,7 @@ console.log(point); // Affiche [10, 20]
 > Dans cet exemple, nous utilisons un alias de type "Coordonnees" pour décrire un tuple contenant deux nombres. Ensuite, nous déclarons une variable "point" de type "Coordonnees" et lui attribuons une valeur.
 
 ## 28 Literal Types
-```TypeScript:
+```typescript
 function direBonjour(langue: "francais" | "anglais"): void {
   if (langue === "francais") {
     console.log("Bonjour!");
@@ -174,7 +174,7 @@ direBonjour("espagnol"); // Affiche "Langue non prise en charge!"
 > Dans cet exemple, la fonction "direBonjour" prend un paramètre "langue" de type "francais" ou "anglais" (des types littéraux). Selon la valeur passée en argument, la fonction affiche le message de salutation correspondant. Si une autre langue est spécifiée, un message indiquant que la langue n'est pas prise en charge est affiché.
 
 ## 29 - Type Never
-```TypeScript:
+```typescript
 function throwError(message: string): never {
   throw new Error(message);
 }
@@ -192,7 +192,7 @@ infiniteLoop(); // Boucle indéfiniment et ne retourne jamais
 > Dans cet exemple, nous utilisons le type "never" pour décrire des situations où la fonction ne retourne jamais ou lance une exception. La fonction "throwError" lance une exception avec le message spécifié, tandis que la fonction "infiniteLoop" boucle indéfiniment. Ces fonctions ont un type de retour "never", car elles n'atteignent jamais la fin normale de l'exécution.
 
 ## 30 - Type Null et Undefined
-```TypeScript:
+```typescript
 let valeur: null = null;
 console.log(valeur); // Affiche null
 
@@ -202,7 +202,7 @@ console.log(variable); // Affiche undefined
 > Dans cet exemple, nous utilisons les types "null" et "undefined" pour déclarer des variables avec des valeurs nulles ou non définies. La variable "valeur" est de type "null" et la variable "variable" est de type "undefined". Ces types spéciaux sont utilisés pour représenter l'absence de valeur ou l'absence de définition.
 
 ## 31/32 - Type Assertions
-```TypeScript:
+```typescript
 let valeur: any = "Bonjour";
 let longueur: number = (valeur as string).length;
 console.log(longueur); // Affiche la longueur de la chaîne
@@ -210,7 +210,7 @@ console.log(longueur); // Affiche la longueur de la chaîne
 > Dans cet exemple, nous utilisons une "type assertion" pour indiquer au compilateur que la variable "valeur" est de type "string". En utilisant l'opérateur "as", nous effectuons une conversion de type et accédons ensuite à la propriété "length" pour obtenir la longueur de la chaîne. Les "type assertions" sont utilisées lorsque le développeur a une connaissance plus précise sur le type d'une variable par rapport à ce que le compilateur peut déduire automatiquement.
 
 ## 33 - Les classes
-```TypeScript:
+```typescript
 class Animal {
   nom: string;
   age: number;
@@ -231,7 +231,7 @@ animal1.afficherDetails(); // Affiche "Nom: Chien, Age: 5"
 > Dans cet exemple, nous définissons une classe "Animal" avec deux propriétés : "nom" de type "string" et "age" de type "number". La classe possède également un constructeur qui initialise ces propriétés. La méthode "afficherDetails" affiche les détails de l'animal. Ensuite, nous créons une instance de la classe "Animal" appelée "animal1" et appelons sa méthode "afficherDetails".
 
 ## 34 - Type Array Object d'une Instance
-```TypeScript:
+```typescript
 class Voiture {
   marque: string;
   annee: number;
@@ -253,7 +253,7 @@ console.log(voitures); // Affiche le tableau d'objets Voiture
 > Dans cet exemple, nous définissons une classe "Voiture" avec deux propriétés : "marque" de type "string" et "annee" de type "number". Ensuite, nous créons un tableau "voitures" de type "Voiture[]", et nous initialisons ce tableau avec des instances de la classe "Voiture". Finalement, nous affichons le tableau d'objets "voitures".
 
 ## 35 - Héritage et Polymorphisme
-```TypeScript:
+```typescript
 class Animal {
   nom: string;
 
@@ -291,7 +291,7 @@ chat.faireDuBruit(); // Affiche "Chat : Fait Miaou!"
 > Nous créons ensuite des instances des classes "Animal", "Chien" et "Chat", et nous appelons la méthode "faireDuBruit" sur chaque instance. Grâce au polymorphisme, la méthode appropriée est appelée en fonction du type réel de l'instance, ce qui permet d'obtenir des résultats différents.
 
 ## 36/37 - Classes (Private, Public, Protected, Readonly)
-```TypeScript:
+```typescript
 class Personne {
   public nom: string;
   private age: number;
@@ -329,7 +329,7 @@ personne.numeroSecuriteSociale = "9876543210"; // Erreur de compilation - Propri
 ```
 
 ## 38 - Interfaces
-```TypeScript:
+```typescript
 interface Personne {
   nom: string;
   age: number;
@@ -354,12 +354,12 @@ afficherPersonne(personne2); // Affiche "Nom: Bob, Age: 25, Adresse: Paris"
 Ensuite, nous déclarons une fonction "afficherPersonne" qui prend en paramètre un objet de type "Personne" et affiche ses détails. Si la propriété "adresse" est présente, elle est également affichée.
 
 Nous créons deux objets "personne1" et "personne2" qui correspondent à la structure de l'interface "Personne". Nous utilisons ensuite la fonction "afficherPersonne" pour afficher les détails de chaque personne.
-```TypeScript:
+```typescript
 > "Les interfaces permettent de définir des contrats ou des structures de données réutilisables, en spécifiant les propriétés et les méthodes attendues dans un objet. Cela facilite la création de structures de données cohérentes et l'interopérabilité entre différentes parties du code."
 ```
 
 ## 39 - Interfaces avec les classes
-```TypeScript:
+```typescript
 interface Animal {
   faireDuBruit(): void;
 }
@@ -398,7 +398,7 @@ L'utilisation d'interfaces avec les classes permet de définir un contrat commun
 
 
 ## 41 - Classes Abstraites - Abstract
-```TypeScript:
+```typescript
 abstract class Forme {
   abstract calculerSurface(): number;
   abstract calculerPerimetre(): number;
@@ -439,7 +439,7 @@ Les classes abstraites sont utiles pour définir des modèles communs et des com
 
 
 ## 42 - Generics
-```TypeScript:
+```typescript
 function premierElement<T>(tableau: T[]): T | undefined {
   if (tableau.length === 0) {
     return undefined;
