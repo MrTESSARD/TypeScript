@@ -30,4 +30,4 @@ function objInArray(n, a) {
     return data;
 }
 var user = objInArray(objOne, objTwo);
-console.log(user);
+console.log(user); //un array d'objets 
