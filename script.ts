@@ -18,4 +18,4 @@ const userData3:User<{name:string, role: string}>={
   data:{name:"Marion", role: "Moderator"}
 
 }
-console.log(userData3);
+console.log(userData3); 
