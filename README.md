@@ -28,7 +28,7 @@ console.log(message);
 > Dans cet exemple, nous comparons le code JavaScript et TypeScript. Le code TypeScript est annoté avec un type (string), ce qui permet au compilateur de détecter d'éventuelles erreurs de type lors de la compilation.
 
 ## 2 - IntelliSense dans Visual Studio Code:
-```TypeScript:
+```typeScript:
 let nom: string = "Alice";
 console.log(nom.charAt(0));
 ```
