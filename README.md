@@ -317,7 +317,7 @@ console.log(personne.age); // Erreur de compilation - Propriété "age" est priv
 console.log(personne.adresse); // Erreur de compilation - Propriété "adresse" est protégée
 personne.nom = "Bob"; // Modifie la valeur de la propriété "nom"
 personne.numeroSecuriteSociale = "9876543210"; // Erreur de compilation - Propriété "numeroSecuriteSociale" est en lecture seule
-
+```
 > Dans cet exemple, nous définissons une classe "Personne" avec plusieurs propriétés ayant différents modificateurs d'accès :
 
 - La propriété "nom" est publique (public) et peut être accédée à partir de n'importe où.
@@ -326,7 +326,7 @@ personne.numeroSecuriteSociale = "9876543210"; // Erreur de compilation - Propri
 - La propriété "numeroSecuriteSociale" est en lecture seule (readonly) et ne peut être modifiée une fois initialisée.
 
 > Nous créons ensuite une instance de la classe "Personne" et accédons à ses propriétés. L'accès à la propriété "age" en dehors de la classe entraîne une erreur de compilation en raison de sa visibilité privée. De même, l'accès à la propriété "adresse" génère une erreur car elle est protégée. En revanche, la propriété "nom" est accessible et peut être modifiée. La tentative de modification de la propriété "numeroSecuriteSociale" entraîne également une erreur car elle est en lecture seule.
-```
+
 
 ## 38 - Interfaces
 ```typescript
@@ -354,9 +354,9 @@ afficherPersonne(personne2); // Affiche "Nom: Bob, Age: 25, Adresse: Paris"
 Ensuite, nous déclarons une fonction "afficherPersonne" qui prend en paramètre un objet de type "Personne" et affiche ses détails. Si la propriété "adresse" est présente, elle est également affichée.
 
 Nous créons deux objets "personne1" et "personne2" qui correspondent à la structure de l'interface "Personne". Nous utilisons ensuite la fonction "afficherPersonne" pour afficher les détails de chaque personne.
-```typescript
+
 > "Les interfaces permettent de définir des contrats ou des structures de données réutilisables, en spécifiant les propriétés et les méthodes attendues dans un objet. Cela facilite la création de structures de données cohérentes et l'interopérabilité entre différentes parties du code."
-```
+
 
 ## 39 - Interfaces avec les classes
 ```typescript
@@ -384,7 +384,7 @@ let chien: Animal = new Chien();
 let chat: Animal = new Chat();
 
 faireDuBruitAnimaux([chien, chat]); // Affiche "Chien : Fait Wouaf!" suivi de "Chat : Fait Miaou!"
-
+```
 > Dans cet exemple, nous définissons une interface "Animal" avec une méthode "faireDuBruit" qui ne renvoie rien (void).
 
 Ensuite, nous définissons deux classes : "Chien" et "Chat", qui implémentent l'interface "Animal" en fournissant une implémentation pour la méthode "faireDuBruit".
@@ -394,7 +394,7 @@ Nous déclarons également une fonction "faireDuBruitAnimaux" qui prend un table
 Nous créons des instances de "Chien" et "Chat" et les passons à la fonction "faireDuBruitAnimaux". Le résultat est l'affichage du bruit spécifique à chaque animal : "Chien : Fait Wouaf!" suivi de "Chat : Fait Miaou!".
 
 L'utilisation d'interfaces avec les classes permet de définir un contrat commun pour les méthodes que les classes doivent implémenter. Cela facilite le polymorphisme et l'utilisation de différentes classes de manière interchangeable.
-```
+
 
 
 ## 41 - Classes Abstraites - Abstract
@@ -424,7 +424,7 @@ class Carre extends Forme {
 
 let carre = new Carre(5);
 carre.afficherDetails(); // Affiche "Surface: 25, Périmètre: 20"
-
+```
 > Dans cet exemple, nous utilisons le mot-clé "abstract" pour définir une classe abstraite "Forme". Une classe abstraite ne peut pas être instanciée directement, mais elle sert de classe de base pour d'autres classes qui en héritent.
 
 La classe abstraite "Forme" déclare deux méthodes abstraites : "calculerSurface" et "calculerPerimetre". Ces méthodes sont définies dans les classes dérivées, et chaque classe dérivée doit fournir une implémentation pour ces méthodes.
@@ -435,7 +435,7 @@ Nous créons une classe dérivée "Carre" qui étend la classe abstraite "Forme"
 
 Nous créons ensuite une instance de "Carre" avec une longueur de côté de 5 et appelons la méthode "afficherDetails" pour afficher la surface et le périmètre du carré.
 
-Les classes abstraites sont utiles pour définir des modèles communs et des comportements généraux, tout en laissant les détails d'implémentation aux classes dérivées. Elles fournissent une structure de base solide pour l'héritage et le polymorphisme.```
+Les classes abstraites sont utiles pour définir des modèles communs et des comportements généraux, tout en laissant les détails d'implémentation aux classes dérivées. Elles fournissent une structure de base solide pour l'héritage et le polymorphisme.
 
 
 ## 42 - Generics
