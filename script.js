@@ -1,10 +1,9 @@
-// 48 - Utility Types - Pick
+// 49 - Utility Type - Omit
 var todo1 = {
     title: "Sport",
     description: "Footing",
     completed: true
 };
 var todo2 = {
-    title: "fare les courses",
-    completed: false
+    description: "Regarder"
 };
