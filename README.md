@@ -482,3 +482,99 @@ console.log(boiteChaine.contenu); // Affiche le contenu de la boîte : "Bonjour"
 > De même, nous déclarons une variable "boiteChaine" de type "Boite<string>" qui contient la chaîne de caractères "Bonjour". En accédant à la propriété "contenu" de la boîte, nous obtenons la chaîne de caractères "Bonjour".
 
 > L'utilisation des generics avec les interfaces permet de créer des structures de données réutilisables qui peuvent contenir différents types de données. Cela offre une grande flexibilité dans la manipulation des données.
+
+
+## 44 - Generics avec les classes
+```typescript
+class Boite<T> {
+  contenu: T;
+
+  constructor(contenu: T) {
+    this.contenu = contenu;
+  }
+
+  afficherContenu(): void {
+    console.log(this.contenu);
+  }
+}
+
+let boiteNombre: Boite<number> = new Boite<number>(42);
+boiteNombre.afficherContenu(); // Affiche le contenu de la boîte : 42
+
+let boiteChaine: Boite<string> = new Boite<string>("Bonjour");
+boiteChaine.afficherContenu(); // Affiche le contenu de la boîte : "Bonjour"
+```
+> Dans cet exemple, nous utilisons les generics avec une classe "Boite". La classe "Boite" est définie avec un type générique "T" qui représente le type du contenu de la boîte.
+
+> La classe "Boite" possède une propriété "contenu" de type "T" et un constructeur qui prend en paramètre le contenu de la boîte.
+
+> Nous créons ensuite une instance de la classe "Boite" en spécifiant le type générique. Par exemple, "Boite<number>" crée une boîte qui contient un nombre.
+
+> En appelant la méthode "afficherContenu()" sur chaque instance de "Boite", nous affichons le contenu de la boîte, qui est spécifique au type générique utilisé.
+
+> L'utilisation des generics avec les classes permet de créer des classes réutilisables qui peuvent être paramétrées avec différents types de données. Cela facilite la création de structures de données génériques et flexibles.
+
+## 45 - Utility Types - Partial
+```typescript
+interface Utilisateur {
+  nom: string;
+  age: number;
+  adresse: string;
+}
+
+function mettreAJourUtilisateur(utilisateur: Utilisateur, miseAJour: Partial<Utilisateur>): Utilisateur {
+  return { ...utilisateur, ...miseAJour };
+}
+
+let utilisateur: Utilisateur = {
+  nom: "Alice",
+  age: 30,
+  adresse: "123 rue Principale"
+};
+
+let miseAJourUtilisateur: Partial<Utilisateur> = {
+  age: 31
+};
+
+let utilisateurMiseAJour: Utilisateur = mettreAJourUtilisateur(utilisateur, miseAJourUtilisateur);
+console.log(utilisateurMiseAJour);
+// Affiche l'utilisateur avec l'âge mis à jour : { nom: "Alice", age: 31, adresse: "123 rue Principale" }
+```
+> Dans cet exemple, nous utilisons l'utilitaire "Partial" fourni par TypeScript. L'utilitaire "Partial" permet de créer un type qui rend toutes les propriétés d'une interface optionnelles.
+
+> Nous avons une interface "Utilisateur" avec plusieurs propriétés : "nom", "age" et "adresse".
+
+> La fonction "mettreAJourUtilisateur" prend deux paramètres : "utilisateur" de type "Utilisateur" et "miseAJour" de type "Partial<Utilisateur>". La fonction fusionne les deux objets en utilisant l'opérateur de décomposition (...), ce qui permet de mettre à jour les propriétés spécifiées dans "miseAJour" sans affecter les autres propriétés de l'utilisateur.
+
+> Nous créons un utilisateur initial avec un nom, un âge et une adresse. Ensuite, nous créons un objet "miseAJourUtilisateur" de type "Partial<Utilisateur>" qui contient uniquement l'âge mis à jour.
+
+> En appelant la fonction "mettreAJourUtilisateur" avec l'utilisateur initial et l'objet de mise à jour, nous obtenons un nouvel utilisateur avec les propriétés mises à jour.
+
+> L'utilitaire "Partial" est utile lorsque vous souhaitez mettre à jour partiellement un objet sans avoir à spécifier toutes ses propriétés.
+
+## 46 - Utility Types - Readonly
+```typescript
+interface Utilisateur {
+  readonly nom: string;
+  readonly age: number;
+}
+
+let utilisateur: Readonly<Utilisateur> = {
+  nom: "Alice",
+  age: 30
+};
+
+// Tentative de modification des propriétés en lecture seule
+utilisateur.nom = "Bob"; // Erreur : impossible de modifier une propriété en lecture seule
+utilisateur.age = 31; // Erreur : impossible de modifier une propriété en lecture seule
+```
+
+> Dans cet exemple, nous utilisons l'utilitaire "Readonly" fourni par TypeScript. L'utilitaire "Readonly" permet de créer un type qui rend toutes les propriétés d'une interface en lecture seule.
+
+> Nous avons une interface "Utilisateur" avec deux propriétés en lecture seule : "nom" et "age". Cela signifie que ces propriétés ne peuvent pas être modifiées une fois qu'elles ont été définies.
+
+> Nous créons une variable "utilisateur" de type "Readonly<Utilisateur>" qui contient un utilisateur initial avec un nom et un âge.
+
+> Ensuite, nous essayons de modifier les propriétés de l'utilisateur, ce qui génère des erreurs. Les propriétés en lecture seule ne peuvent pas être modifiées directement.
+
+> L'utilitaire "Readonly" est utile lorsque vous souhaitez définir des objets immuables où les propriétés ne peuvent pas être modifiées après leur création.
