@@ -715,3 +715,51 @@ console.log(couleur);
 > En affichant "couleur", nous obtenons une couleur non primaire, dans ce cas "Vert".
 
 > L'utilitaire "Exclude" est utile lorsque vous souhaitez créer un nouveau type en excluant certains types spécifiques d'une union de types.
+
+
+## 51 - Utility Type - Extract
+```typescript
+type Couleur = "Rouge" | "Vert" | "Bleu";
+type CouleurPrimaire = "Rouge" | "Bleu";
+
+type CouleurExtraite = Extract<Couleur, CouleurPrimaire>;
+
+let couleur: CouleurExtraite = "Rouge";
+
+console.log(couleur);
+// Affiche la couleur extraite : "Rouge"
+```
+> Dans cet exemple, nous utilisons l'utilitaire "Extract" fourni par TypeScript. L'utilitaire "Extract" permet de créer un type qui extrait les types spécifiés d'une union de types.
+
+> Nous définissons d'abord deux types : "Couleur" et "CouleurPrimaire". "Couleur" est une union de types représentant différentes couleurs, tandis que "CouleurPrimaire" est une union de types représentant les couleurs primaires.
+
+> Ensuite, nous utilisons l'utilitaire "Extract<Couleur, CouleurPrimaire>" pour créer un nouveau type "CouleurExtraite" qui extrait les couleurs primaires de l'union de types "Couleur".
+
+> Nous créons une variable "couleur" de type "CouleurExtraite" qui peut contenir une couleur extraite, c'est-à-dire une couleur primaire.
+
+> En affichant "couleur", nous obtenons une couleur extraite, dans ce cas "Rouge".
+
+> L'utilitaire "Extract" est utile lorsque vous souhaitez créer un nouveau type en extrayant certains types spécifiques d'une union de types.
+
+
+## 52 - Utility Type - NonNullable
+```typescript
+type Couleur = string | null | undefined;
+type CouleurNonNullable = NonNullable<Couleur>;
+
+let couleur: CouleurNonNullable = "Rouge";
+
+console.log(couleur);
+// Affiche la couleur non nullable : "Rouge"
+```
+> Dans cet exemple, nous utilisons l'utilitaire "NonNullable" fourni par TypeScript. L'utilitaire "NonNullable" permet de créer un type qui exclut les valeurs null et undefined d'un type donné.
+
+> Nous définissons un type "Couleur" qui peut être une chaîne de caractères, null ou undefined.
+
+> Ensuite, nous utilisons l'utilitaire "NonNullable<Couleur>" pour créer un nouveau type "CouleurNonNullable" qui exclut les valeurs null et undefined du type "Couleur".
+
+> Nous créons une variable "couleur" de type "CouleurNonNullable" qui peut contenir une couleur non nullable.
+
+> En affichant "couleur", nous obtenons une couleur non nullable, dans ce cas "Rouge".
+
+> L'utilitaire "NonNullable" est utile lorsque vous souhaitez créer un nouveau type en excluant les valeurs null et undefined d'un type existant.
