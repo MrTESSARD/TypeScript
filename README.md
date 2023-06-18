@@ -763,3 +763,34 @@ console.log(couleur);
 > En affichant "couleur", nous obtenons une couleur non nullable, dans ce cas "Rouge".
 
 > L'utilitaire "NonNullable" est utile lorsque vous souhaitez créer un nouveau type en excluant les valeurs null et undefined d'un type existant.
+
+
+## 53 - Utility Type - Parameters
+```typescript
+type Fonction = (nom: string, age: number) => void;
+type ParametresFonction = Parameters<Fonction>;
+
+function afficherUtilisateur(nom: string, age: number) {
+  console.log(`Utilisateur: ${nom}, Age: ${age}`);
+}
+
+let parametres: ParametresFonction = ["Alice", 30];
+
+afficherUtilisateur(...parametres);
+// Affiche: Utilisateur: Alice, Age: 30
+```
+> Dans cet exemple, nous utilisons l'utilitaire "Parameters" fourni par TypeScript. L'utilitaire "Parameters" permet d'obtenir le type des paramètres d'une fonction donnée.
+
+> Nous définissons un type "Fonction" qui représente une fonction prenant deux paramètres : "nom" de type string et "age" de type number, et ne renvoyant rien (void).
+
+> Ensuite, nous utilisons l'utilitaire "Parameters<Fonction>" pour créer un nouveau type "ParametresFonction" qui correspond au type des paramètres de la fonction "Fonction".
+
+> Nous définissons une fonction "afficherUtilisateur" qui prend deux paramètres : "nom" et "age", et affiche les informations de l'utilisateur.
+
+> Nous créons une variable "parametres" de type "ParametresFonction" en fournissant les valeurs des paramètres de la fonction "afficherUtilisateur".
+
+> En utilisant l'opérateur de décomposition (...), nous passons les paramètres de "parametres" à la fonction "afficherUtilisateur".
+
+> L'appel de la fonction affichera les informations de l'utilisateur avec les valeurs fournies.
+
+> L'utilitaire "Parameters" est utile lorsque vous souhaitez obtenir le type des paramètres d'une fonction et les réutiliser dans d'autres parties de votre code.

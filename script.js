@@ -1,12 +1,12 @@
-// 52. Utility Type - NonNullable
-var Car = /** @class */ (function () {
-    function Car() {
+// 53. Utility Type - Paramètres
+function fetchUser(id, username) {
+    console.log("Fetch user id ".concat(id, " | username ").concat(username));
+}
+function fetchLoggedUser() {
+    var params = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        params[_i] = arguments[_i];
     }
-    Car.prototype.paint = function (color) {
-        console.log(color);
-    };
-    return Car;
-}());
-var ford = new Car();
-ford.paint("green");
-ford.paint(undefined); //ok sans NonNullable
+    fetchUser.apply(void 0, params);
+}
+fetchLoggedUser(3, "Marion");
