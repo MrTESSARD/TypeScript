@@ -794,3 +794,31 @@ afficherUtilisateur(...parametres);
 > L'appel de la fonction affichera les informations de l'utilisateur avec les valeurs fournies.
 
 > L'utilitaire "Parameters" est utile lorsque vous souhaitez obtenir le type des paramètres d'une fonction et les réutiliser dans d'autres parties de votre code.
+
+## 54 - Utility Type - ReturnType
+```typescript
+type Fonction = () => string;
+type TypeRetour = ReturnType<Fonction>;
+
+function obtenirMessage(): string {
+  return "Bonjour, monde!";
+}
+
+let message: TypeRetour = obtenirMessage();
+
+console.log(message);
+// Affiche: Bonjour, monde!
+```
+> Dans cet exemple, nous utilisons l'utilitaire "ReturnType" fourni par TypeScript. L'utilitaire "ReturnType" permet d'obtenir le type de retour d'une fonction donnée.
+
+> Nous définissons un type "Fonction" qui représente une fonction ne prenant aucun paramètre et renvoyant une chaîne de caractères.
+
+> Ensuite, nous utilisons l'utilitaire "ReturnType<Fonction>" pour créer un nouveau type "TypeRetour" qui correspond au type de retour de la fonction "Fonction".
+
+> Nous définissons une fonction "obtenirMessage" qui ne prend aucun paramètre et renvoie une chaîne de caractères "Bonjour, monde!".
+
+> Nous créons une variable "message" de type "TypeRetour" qui récupère la valeur de retour de la fonction "obtenirMessage".
+
+> En affichant "message", nous obtenons le message "Bonjour, monde!".
+
+> L'utilitaire "ReturnType" est utile lorsque vous souhaitez obtenir le type de retour d'une fonction et l'utiliser dans d'autres parties de votre code.
