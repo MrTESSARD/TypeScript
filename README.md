@@ -610,3 +610,42 @@ console.log(inventaire.Lampe); // Affiche l'inventaire de la lampe : { quantite:
 > Nous accédons ensuite aux valeurs de l'inventaire en utilisant les clés "Chaise", "Table" et "Lampe". Chaque clé nous renvoie l'inventaire correspondant à ce produit.
 
 > L'utilitaire "Record" est utile lorsque vous avez besoin de créer des associations clé-valeur avec des types spécifiques.
+
+
+## 48 - Utility Types - Pick
+```typescript
+interface Utilisateur {
+  nom: string;
+  age: number;
+  adresse: string;
+  email: string;
+}
+
+type UtilisateurBasique = Pick<Utilisateur, "nom" | "age">;
+
+let utilisateur: Utilisateur = {
+  nom: "Alice",
+  age: 30,
+  adresse: "123 rue Principale",
+  email: "alice@example.com"
+};
+
+let utilisateurBasique: UtilisateurBasique = {
+  nom: utilisateur.nom,
+  age: utilisateur.age
+};
+
+console.log(utilisateurBasique);
+// Affiche les propriétés nom et age de l'utilisateur : { nom: "Alice", age: 30 }
+```
+> Dans cet exemple, nous utilisons l'utilitaire "Pick" fourni par TypeScript. L'utilitaire "Pick" permet de créer un type qui sélectionne uniquement les propriétés spécifiées d'une interface.
+
+> Nous avons une interface "Utilisateur" avec plusieurs propriétés : "nom", "age", "adresse" et "email".
+
+> Ensuite, nous utilisons l'utilitaire "Pick<Utilisateur, "nom" | "age">" pour créer un nouveau type "UtilisateurBasique" qui contient uniquement les propriétés "nom" et "age" de l'interface "Utilisateur".
+
+> Nous créons un utilisateur initial avec toutes les propriétés. Ensuite, nous créons un objet "utilisateurBasique" de type "UtilisateurBasique" en sélectionnant uniquement les propriétés "nom" et "age" de l'utilisateur initial.
+
+> En affichant "utilisateurBasique", nous obtenons un nouvel objet contenant uniquement les propriétés sélectionnées.
+
+> L'utilitaire "Pick" est utile lorsque vous souhaitez extraire un sous-ensemble spécifique de propriétés d'une interface pour créer un nouveau type.
