@@ -689,3 +689,29 @@ console.log(utilisateurSansEmail);
 > En affichant "utilisateurSansEmail", nous obtenons un nouvel objet contenant toutes les propriétés de l'utilisateur initial, à l'exception de "email".
 
 > L'utilitaire "Omit" est utile lorsque vous souhaitez créer un nouveau type en excluant certaines propriétés spécifiques d'une interface.
+
+
+## 50 - Utility Type - Exclude
+```typescript
+type Couleur = "Rouge" | "Vert" | "Bleu";
+type CouleurPrimaire = "Rouge" | "Bleu";
+
+type CouleurNonPrimaire = Exclude<Couleur, CouleurPrimaire>;
+
+let couleur: CouleurNonPrimaire = "Vert";
+
+console.log(couleur);
+// Affiche la couleur non primaire : "Vert"
+```
+
+> Dans cet exemple, nous utilisons l'utilitaire "Exclude" fourni par TypeScript. L'utilitaire "Exclude" permet de créer un type qui exclut les types spécifiés d'une union de types.
+
+> Nous définissons d'abord deux types : "Couleur" et "CouleurPrimaire". "Couleur" est une union de types représentant différentes couleurs, tandis que "CouleurPrimaire" est une union de types représentant les couleurs primaires.
+
+> Ensuite, nous utilisons l'utilitaire "Exclude<Couleur, CouleurPrimaire>" pour créer un nouveau type "CouleurNonPrimaire" qui exclut les couleurs primaires de l'union de types "Couleur".
+
+> Nous créons une variable "couleur" de type "CouleurNonPrimaire" qui peut contenir une couleur non primaire.
+
+> En affichant "couleur", nous obtenons une couleur non primaire, dans ce cas "Vert".
+
+> L'utilitaire "Exclude" est utile lorsque vous souhaitez créer un nouveau type en excluant certains types spécifiques d'une union de types.
