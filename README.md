@@ -578,3 +578,35 @@ utilisateur.age = 31; // Erreur : impossible de modifier une propriété en lect
 > Ensuite, nous essayons de modifier les propriétés de l'utilisateur, ce qui génère des erreurs. Les propriétés en lecture seule ne peuvent pas être modifiées directement.
 
 > L'utilitaire "Readonly" est utile lorsque vous souhaitez définir des objets immuables où les propriétés ne peuvent pas être modifiées après leur création.
+
+
+## 47 - Utility Types - Record
+```typescript
+type Produit = "Chaise" | "Table" | "Lampe";
+
+interface Inventaire {
+  quantite: number;
+  emplacement: string;
+}
+
+let inventaire: Record<Produit, Inventaire> = {
+  Chaise: { quantite: 5, emplacement: "Salle à manger" },
+  Table: { quantite: 2, emplacement: "Salon" },
+  Lampe: { quantite: 10, emplacement: "Chambre" }
+};
+
+console.log(inventaire.Chaise); // Affiche l'inventaire de la chaise : { quantite: 5, emplacement: "Salle à manger" }
+console.log(inventaire.Table); // Affiche l'inventaire de la table : { quantite: 2, emplacement: "Salon" }
+console.log(inventaire.Lampe); // Affiche l'inventaire de la lampe : { quantite: 10, emplacement: "Chambre" }
+```
+> Dans cet exemple, nous utilisons l'utilitaire "Record" fourni par TypeScript. L'utilitaire "Record" permet de créer un type qui associe des clés à des valeurs d'un autre type.
+
+> Nous définissons un type "Produit" qui représente les différents produits disponibles. Il s'agit d'une union de types avec les valeurs "Chaise", "Table" et "Lampe".
+
+> Nous avons également une interface "Inventaire" qui représente la quantité et l'emplacement d'un produit dans l'inventaire.
+
+> Ensuite, nous créons une variable "inventaire" de type "Record<Produit, Inventaire>" qui associe chaque produit à son inventaire correspondant.
+
+> Nous accédons ensuite aux valeurs de l'inventaire en utilisant les clés "Chaise", "Table" et "Lampe". Chaque clé nous renvoie l'inventaire correspondant à ce produit.
+
+> L'utilitaire "Record" est utile lorsque vous avez besoin de créer des associations clé-valeur avec des types spécifiques.
