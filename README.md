@@ -649,3 +649,43 @@ console.log(utilisateurBasique);
 > En affichant "utilisateurBasique", nous obtenons un nouvel objet contenant uniquement les propriétés sélectionnées.
 
 > L'utilitaire "Pick" est utile lorsque vous souhaitez extraire un sous-ensemble spécifique de propriétés d'une interface pour créer un nouveau type.
+
+
+## 49 - Utility Type - Omit
+```typescript
+interface Utilisateur {
+  nom: string;
+  age: number;
+  adresse: string;
+  email: string;
+}
+
+type UtilisateurSansEmail = Omit<Utilisateur, "email">;
+
+let utilisateur: Utilisateur = {
+  nom: "Alice",
+  age: 30,
+  adresse: "123 rue Principale",
+  email: "alice@example.com"
+};
+
+let utilisateurSansEmail: UtilisateurSansEmail = {
+  nom: utilisateur.nom,
+  age: utilisateur.age,
+  adresse: utilisateur.adresse
+};
+
+console.log(utilisateurSansEmail);
+// Affiche les propriétés nom, age et adresse de l'utilisateur : { nom: "Alice", age: 30, adresse: "123 rue Principale" }
+```
+> Dans cet exemple, nous utilisons l'utilitaire "Omit" fourni par TypeScript. L'utilitaire "Omit" permet de créer un type qui exclut les propriétés spécifiées d'une interface.
+
+> Nous avons une interface "Utilisateur" avec plusieurs propriétés : "nom", "age", "adresse" et "email".
+
+> Ensuite, nous utilisons l'utilitaire "Omit<Utilisateur, "email">" pour créer un nouveau type "UtilisateurSansEmail" qui exclut la propriété "email" de l'interface "Utilisateur".
+
+> Nous créons un utilisateur initial avec toutes les propriétés. Ensuite, nous créons un objet "utilisateurSansEmail" de type "UtilisateurSansEmail" en excluant la propriété "email" de l'utilisateur initial.
+
+> En affichant "utilisateurSansEmail", nous obtenons un nouvel objet contenant toutes les propriétés de l'utilisateur initial, à l'exception de "email".
+
+> L'utilitaire "Omit" est utile lorsque vous souhaitez créer un nouveau type en excluant certaines propriétés spécifiques d'une interface.
