@@ -838,12 +838,12 @@ Voici un exemple de configuration tsconfig.json avec l'option "rootDir" :
     "outDir": "./dist"
   }
 }
-<!--
-Dans cet exemple, le répertoire racine des fichiers TypeScript est défini comme "./src". Cela signifie que tous les fichiers TypeScript à compiler doivent être situés dans le répertoire "./src".
+```
+"Dans cet exemple, le répertoire racine des fichiers TypeScript est défini comme "./src". Cela signifie que tous les fichiers TypeScript à compiler doivent être situés dans le répertoire "./src".
 
 "outDir" : L'option "outDir" permet de spécifier le répertoire de sortie où les fichiers JavaScript générés par le compilateur TypeScript seront placés.
 Dans l'exemple de configuration tsconfig.json ci-dessus, le répertoire de sortie est défini comme "./dist". Cela signifie que les fichiers JavaScript résultants seront placés dans le répertoire "./dist".
 
 Lorsque vous exécutez le compilateur TypeScript avec cette configuration, il analysera tous les fichiers TypeScript situés dans le répertoire racine ("rootDir") et générera les fichiers JavaScript correspondants dans le répertoire de sortie ("outDir").
 
-Cela permet d'organiser facilement les fichiers sources et les fichiers générés dans des répertoires distincts, ce qui facilite la gestion et le déploiement de votre projet TypeScript.-->
+Cela permet d'organiser facilement les fichiers sources et les fichiers générés dans des répertoires distincts, ce qui facilite la gestion et le déploiement de votre projet TypeScript."
