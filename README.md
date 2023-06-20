@@ -847,3 +847,36 @@ Dans l'exemple de configuration tsconfig.json ci-dessus, le répertoire de sorti
 Lorsque vous exécutez le compilateur TypeScript avec cette configuration, il analysera tous les fichiers TypeScript situés dans le répertoire racine ("rootDir") et générera les fichiers JavaScript correspondants dans le répertoire de sortie ("outDir").
 
 Cela permet d'organiser facilement les fichiers sources et les fichiers générés dans des répertoires distincts, ce qui facilite la gestion et le déploiement de votre projet TypeScript."
+
+## 57 - tsconfig - Include - Exclude
+Le fichier de configuration tsconfig.json offre également les options "include" et "exclude" qui permettent de spécifier les fichiers TypeScript à inclure ou exclure lors de la compilation.
+
+- "include" : L'option "include" permet de spécifier les fichiers TypeScript à inclure dans le processus de compilation. Vous pouvez utiliser des motifs de correspondance de fichiers (globs) pour définir les fichiers à inclure. Par exemple :
+```json
+{
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist"
+  },
+  "include": [
+    "./src/**/*.ts"
+  ]
+}
+```
+Dans cet exemple, tous les fichiers TypeScript présents dans le répertoire "./src" et ses sous-répertoires seront inclus dans la compilation.
+
+"exclude" : L'option "exclude" permet de spécifier les fichiers TypeScript à exclure de la compilation. Vous pouvez également utiliser des motifs de correspondance de fichiers (globs) pour définir les fichiers à exclure. Par exemple :
+```json
+{
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist"
+  },
+  "exclude": [
+    "./src/test/**/*.ts"
+  ]
+}
+```
+Dans cet exemple, tous les fichiers TypeScript présents dans le répertoire "./src/test" et ses sous-répertoires seront exclus de la compilation.
+
+En utilisant les options "include" et "exclude", vous pouvez spécifier précisément quels fichiers TypeScript doivent être inclus ou exclus lors du processus de compilation. Cela vous permet de gérer efficacement les dépendances et les fichiers sources dans votre projet TypeScript.
