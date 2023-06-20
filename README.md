@@ -880,3 +880,22 @@ Dans cet exemple, tous les fichiers TypeScript présents dans le répertoire "./
 Dans cet exemple, tous les fichiers TypeScript présents dans le répertoire "./src/test" et ses sous-répertoires seront exclus de la compilation.
 
 En utilisant les options "include" et "exclude", vous pouvez spécifier précisément quels fichiers TypeScript doivent être inclus ou exclus lors du processus de compilation. Cela vous permet de gérer efficacement les dépendances et les fichiers sources dans votre projet TypeScript.
+
+## 58 - tsconfig - Lib
+Le fichier de configuration tsconfig.json offre l'option "lib" qui permet de spécifier les bibliothèques TypeScript à inclure lors de la compilation.
+
+Les bibliothèques TypeScript fournissent des définitions de types pour les fonctionnalités et les objets JavaScript courants. Lorsque vous utilisez l'option "lib", vous spécifiez les bibliothèques que vous souhaitez utiliser dans votre projet TypeScript.
+
+Voici un exemple de configuration tsconfig.json avec l'option "lib" :
+```json
+{
+  "compilerOptions": {
+    "lib": ["es6", "dom"]
+  }
+}
+```
+Dans cet exemple, les bibliothèques "es6" et "dom" sont spécifiées. Cela signifie que les définitions de types correspondantes seront incluses lors de la compilation, ce qui vous permettra d'accéder aux fonctionnalités ES6 (par exemple, les classes, les fonctions fléchées) ainsi qu'aux fonctionnalités DOM (par exemple, les objets Document, Element).
+
+Vous pouvez spécifier différentes bibliothèques en fonction des besoins de votre projet. Les bibliothèques les plus couramment utilisées incluent "es5", "es6", "dom", "webworker", "scripthost", etc.
+
+Il est important de choisir les bibliothèques appropriées en fonction des fonctionnalités que vous utilisez dans votre projet. Cela garantit que le compilateur TypeScript dispose des définitions de types nécessaires pour valider votre code correctement.
