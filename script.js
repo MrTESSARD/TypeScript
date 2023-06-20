@@ -1,18 +1,15 @@
+"use strict";
 // 54 - Utility Type - ReturnType
 function fetchUser1(id, username) {
     return {
-        id: id,
-        username: username
+        id,
+        username
     };
 }
-function fetchLoggedUser1() {
-    var params = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        params[_i] = arguments[_i];
-    }
-    var memberData = fetchUser.apply(void 0, params);
+function fetchLoggedUser1(...params) {
+    const memberData = fetchUser(...params);
     console.log(memberData);
-    var user = {
+    let user = {
         id: 4,
         username: "Toto"
     };
