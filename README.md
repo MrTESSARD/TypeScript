@@ -928,3 +928,30 @@ Le fichier de configuration tsconfig.json offre de nombreuses options de configu
 
 
 Ces options de base vous permettent de personnaliser le comportement du compilateur TypeScript en fonction des besoins de votre projet. Vous pouvez les spécifier dans votre fichier tsconfig.json pour configurer le projet.
+
+## 60 - tsconfig - Le reste des options
+Le fichier de configuration tsconfig.json propose également d'autres options pour affiner le comportement du compilateur TypeScript. Voici quelques-unes de ces options supplémentaires :
+
+- "esModuleInterop" : L'option "esModuleInterop" permet l'utilisation d'interopérabilité entre les modules ECMAScript et CommonJS. Elle simplifie l'utilisation de modules ECMAScript dans un projet utilisant CommonJS.
+
+- "strictNullChecks" : L'option "strictNullChecks" active des vérifications de type strictes pour les valeurs null et undefined. Elle aide à éviter les erreurs courantes liées à l'accès à des variables potentiellement nulles ou non définies.
+
+- "noImplicitThis" : L'option "noImplicitThis" signale une erreur lorsque le mot-clé "this" est utilisé dans un contexte qui n'a pas de type défini. Cela aide à éviter les erreurs liées à l'utilisation incorrecte du mot-clé "this".
+
+- "noUnusedLocals" : L'option "noUnusedLocals" signale une erreur lorsque des variables locales sont déclarées mais jamais utilisées. Cela aide à détecter les variables inutiles dans votre code.
+
+- "noUnusedParameters" : L'option "noUnusedParameters" signale une erreur lorsque des paramètres de fonction sont déclarés mais jamais utilisés. Cela permet de repérer les paramètres inutilisés dans vos fonctions.
+
+- "strictFunctionTypes" : L'option "strictFunctionTypes" applique une vérification de type stricte pour les fonctions et leurs types de paramètres. Elle aide à garantir une correspondance stricte des types pour les fonctions.
+
+- "noImplicitReturns" : L'option "noImplicitReturns" signale une erreur lorsque toutes les branches d'une fonction n'ont pas de déclaration de retour explicite. Cela aide à éviter les oublis de déclaration de retour dans vos fonctions.
+
+- "noImplicitAny" : L'option "noImplicitAny" signale une erreur lorsque TypeScript ne peut pas déduire le type d'une variable et que le type "any" est implicite. Cela vous encourage à spécifier explicitement les types des variables plutôt que de les laisser non typées.
+
+- "strictBindCallApply" : L'option "strictBindCallApply" applique des vérifications strictes pour les fonctions bind, call et apply. Elle vous encourage à utiliser ces fonctions avec les types de paramètres appropriés.
+
+- "strictPropertyInitialization" : L'option "strictPropertyInitialization" signale une erreur si une propriété de classe n'est pas initialisée dans le constructeur ou avec une valeur par défaut. Cela garantit que toutes les propriétés de classe sont correctement initialisées avant leur utilisation.
+
+- "alwaysStrict" : L'option "alwaysStrict" indique au compilateur TypeScript de générer du code JavaScript en mode strict. Cela active les vérifications strictes de type et de syntaxe pour garantir un code plus sûr.
+
+
