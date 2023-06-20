@@ -899,3 +899,32 @@ Dans cet exemple, les bibliothèques "es6" et "dom" sont spécifiées. Cela sign
 Vous pouvez spécifier différentes bibliothèques en fonction des besoins de votre projet. Les bibliothèques les plus couramment utilisées incluent "es5", "es6", "dom", "webworker", "scripthost", etc.
 
 Il est important de choisir les bibliothèques appropriées en fonction des fonctionnalités que vous utilisez dans votre projet. Cela garantit que le compilateur TypeScript dispose des définitions de types nécessaires pour valider votre code correctement.
+
+## 59 - tsconfig - Options de base
+Le fichier de configuration tsconfig.json offre de nombreuses options de configuration pour personnaliser le comportement du compilateur TypeScript. Voici quelques-unes des options de base les plus couramment utilisées :
+
+- "target" : L'option "target" spécifie la version ECMAScript cible pour la compilation. Par exemple, vous pouvez utiliser "es5" pour cibler ECMAScript 5, ou "es6" pour cibler ECMAScript 2015 (ES6). La valeur par défaut est "es3".
+
+- "module" : L'option "module" spécifie le système de modules à utiliser lors de la génération du code. Les valeurs courantes sont "commonjs" pour les modules CommonJS, "amd" pour les modules Asynchronous Module Definition (AMD), "es2015" pour les modules ECMAScript 2015, etc. La valeur par défaut est "commonjs".
+
+- "outDir" : L'option "outDir" spécifie le répertoire de sortie où les fichiers JavaScript générés seront placés. Par exemple, vous pouvez définir "outDir" sur "./dist" pour générer les fichiers JavaScript dans le répertoire "dist".
+
+- "rootDir" : L'option "rootDir" spécifie le répertoire racine où se trouvent les fichiers TypeScript à compiler. Cela permet d'organiser efficacement les fichiers sources TypeScript dans une structure hiérarchique.
+
+- "strict" : L'option "strict" active un ensemble de vérifications de type strictes. Lorsque "strict" est activé, TypeScript effectue des vérifications supplémentaires pour garantir un code plus sûr. Par exemple, il vérifie l'utilisation des types, l'affectation de valeurs null et undefined, etc.
+- "allowJs" : L'option "allowJs" permet la compilation de fichiers JavaScript dans votre projet TypeScript. Lorsqu'elle est activée, TypeScript accepte les fichiers JavaScript et les compile en JavaScript.
+
+- "checkJs" : L'option "checkJs" permet de vérifier les fichiers JavaScript pendant la compilation TypeScript. Elle active des vérifications supplémentaires pour détecter les erreurs potentielles dans les fichiers JavaScript.
+
+- "declarationMap" : L'option "declarationMap" génère des fichiers de mappage (.map) pour les fichiers de déclaration (.d.ts). Ces fichiers de mappage facilitent le débogage du code TypeScript à l'aide des outils de développement.
+
+- "sourceMap" : L'option "sourceMap" génère des fichiers de mappage (.map) pour les fichiers JavaScript générés. Ces fichiers de mappage permettent de relier le code JavaScript au code TypeScript d'origine lors du débogage.
+
+- "removeComments" : L'option "removeComments" supprime les commentaires des fichiers JavaScript générés lors de la compilation. Cela permet de réduire la taille des fichiers de sortie.
+
+- "noEmit" : L'option "noEmit" indique au compilateur TypeScript de ne pas générer les fichiers JavaScript en sortie. Utile lorsque vous souhaitez uniquement effectuer des vérifications de type sans générer de code JavaScript.
+
+- "declaration" : L'option "declaration" génère des fichiers de déclaration (.d.ts) correspondant aux fichiers TypeScript compilés. Les fichiers de déclaration permettent d'utiliser votre code TypeScript depuis d'autres projets ou langages qui prennent en charge les fichiers de déclaration.
+
+
+Ces options de base vous permettent de personnaliser le comportement du compilateur TypeScript en fonction des besoins de votre projet. Vous pouvez les spécifier dans votre fichier tsconfig.json pour configurer le projet.
