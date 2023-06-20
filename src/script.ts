@@ -19,8 +19,6 @@ function fetchLoggedUser1(...params: FetchUserParam1) {
     id: 4,
     username: "Toto"
   };
-
-  
 }
 
 

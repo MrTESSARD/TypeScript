@@ -1,5 +1,6 @@
 tsc script.ts -w //lancer la génération automatique du script.js
-tsc -w //lancer la génération automatique de tous les ts en .js
+tsc -w //lancer la génération automatique de tous les ts en .js avec watch suivant config tsconfig.json et AVEC "outDir": "./public", et les autres params
+tsc  //lancer la génération automatique de tous les ts en .js
 tsc --init //initialiser le fichier tsconfig.json //voir "strictNullChecks": false,  dans tsconfig.json
 tsc -v //voir version TypeScript Compiler
 tsc -help //voir commandes https://www.typescriptlang.org/docs/handbook/compiler-options-in-msbuild.html
