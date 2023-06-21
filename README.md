@@ -985,3 +985,39 @@ MonEspaceDeNoms.maFonction();
 > Dans cet exemple, nous définissons un espace de noms appelé MonEspaceDeNoms, dans lequel nous déclarons une classe MaClasse et une fonction maFonction. Ces éléments sont accessibles à l'extérieur de l'espace de noms grâce à l'utilisation du mot-clé export. Ensuite, nous utilisons la classe et la fonction en les préfixant avec le nom de l'espace de noms.
 
 > Il est recommandé d'utiliser les modules basés sur les fichiers plutôt que les espaces de noms pour organiser votre code TypeScript, car les modules offrent une meilleure encapsulation, une meilleure gestion des dépendances et une meilleure extensibilité.
+
+> Modifications au niveau du tsconfig : 
+"outFile": "./public/bundle.js",   
+"module": "amd", 
+
+## 62 - Modules ES6 : Importation et Exportation
+
+En TypeScript, vous pouvez utiliser les modules ES6 pour organiser votre code et gérer les dépendances entre les différents fichiers. Les modules ES6 offrent une syntaxe simple et expressive pour importer et exporter du code.
+
+Voici un exemple d'importation et d'exportation de modules ES6 en TypeScript :
+
+**Fichier moduleA.ts**
+```typescript
+// Exportation d'une fonction
+export function maFonction() {
+  // ...
+}
+
+// Exportation d'une constante
+export const maConstante = "Valeur";
+```
+**Fichier moduleB.ts**
+
+```typescript
+// Importation de la fonction et de la constante depuis moduleA.ts
+import { maFonction, maConstante } from "./moduleA";
+
+// Utilisation de la fonction et de la constante
+maFonction();
+console.log(maConstante);
+```
+> Dans cet exemple, le fichier moduleA.ts exporte une fonction maFonction et une constante maConstante à l'aide du mot-clé export. Le fichier moduleB.ts importe ensuite ces éléments spécifiques depuis moduleA.ts en utilisant la syntaxe import { ... } from "chemin/vers/moduleA". Vous pouvez ensuite utiliser les éléments importés normalement dans le fichier moduleB.ts.
+
+> Il existe également d'autres formes d'importation et d'exportation dans les modules ES6, telles que l'importation/exportation par défaut (default) et l'importation/exportation groupée (* as). Ces fonctionnalités permettent une plus grande flexibilité dans la gestion des modules.
+
+> Les modules ES6 offrent une méthode moderne et standardisée pour organiser votre code TypeScript et gérer les dépendances entre les fichiers. Ils sont largement utilisés dans les projets TypeScript actuels.
