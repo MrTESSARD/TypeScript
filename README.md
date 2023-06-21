@@ -954,4 +954,34 @@ Le fichier de configuration tsconfig.json propose également d'autres options po
 
 - "alwaysStrict" : L'option "alwaysStrict" indique au compilateur TypeScript de générer du code JavaScript en mode strict. Cela active les vérifications strictes de type et de syntaxe pour garantir un code plus sûr.
 
+## 61 - Modules Namespaces
 
+En TypeScript, les modules permettent d'organiser le code en compartiments logiques et d'éviter les collisions entre les noms. Les modules peuvent être utilisés à l'aide de deux approches : les modules basés sur les fichiers et les modules basés sur les espaces de noms (namespaces).
+
+Les modules basés sur les fichiers utilisent des fichiers physiques pour définir des modules et des dépendances entre eux. Ils sont largement utilisés dans les projets TypeScript modernes, et leur utilisation est recommandée.
+
+Les espaces de noms (namespaces) permettent également d'organiser le code en compartiments logiques, mais ils sont principalement utilisés dans des scénarios de migration depuis du code JavaScript existant vers TypeScript. Les espaces de noms sont définis à l'aide du mot-clé `namespace`.
+
+Voici un exemple illustrant l'utilisation d'un espace de noms :
+
+```typescript
+// Déclaration d'un espace de noms
+namespace MonEspaceDeNoms {
+  // Déclaration d'une classe à l'intérieur de l'espace de noms
+  export class MaClasse {
+    // ...
+  }
+
+  // Déclaration d'une fonction à l'intérieur de l'espace de noms
+  export function maFonction() {
+    // ...
+  }
+}
+
+// Utilisation de la classe et de la fonction à partir de l'espace de noms
+const instance = new MonEspaceDeNoms.MaClasse();
+MonEspaceDeNoms.maFonction();
+```
+> Dans cet exemple, nous définissons un espace de noms appelé MonEspaceDeNoms, dans lequel nous déclarons une classe MaClasse et une fonction maFonction. Ces éléments sont accessibles à l'extérieur de l'espace de noms grâce à l'utilisation du mot-clé export. Ensuite, nous utilisons la classe et la fonction en les préfixant avec le nom de l'espace de noms.
+
+> Il est recommandé d'utiliser les modules basés sur les fichiers plutôt que les espaces de noms pour organiser votre code TypeScript, car les modules offrent une meilleure encapsulation, une meilleure gestion des dépendances et une meilleure extensibilité.
