@@ -1,10 +1,15 @@
-// 74. Introduction aux Decorators
+// 75. Decorators Factories
 
-function Test(constructor:Function) {
-  console.log(constructor);
-  
+function Test(hw:string) {
+  return function (constructor:Function) {
+    console.log(constructor);
+    console.log(hw);
+    
+  }
 }
-@Test
+
+
+@Test('Hello World')
 class Car{
   constructor(private n:string, private c :string){}
 carDetails(){
@@ -14,3 +19,4 @@ carDetails(){
 }
 // const ford = new Car("FORD", "ROUGE")
 // console.log(ford.carDetails());
+

@@ -1034,7 +1034,7 @@ Voici un exemple simple d'utilisation d'un decorator :
 function log(target: any, key: string) {
   // Logique du decorator
   console.log(`Le decorator log a été appliqué à la méthode ${key} de la classe ${target.constructor.name}`);
-}
+}//Le decorator log a été appliqué à la méthode maMethode de la classe MaClasse
 
 // Utilisation du decorator
 class MaClasse {
@@ -1051,3 +1051,36 @@ class MaClasse {
 > Les decorators offrent une grande flexibilité et peuvent être utilisés pour ajouter des fonctionnalités supplémentaires aux classes et aux objets, telles que la validation des entrées, la journalisation, l'injection de dépendances, etc.
 
 > Il existe plusieurs types de decorators en TypeScript, tels que les decorators de classe, de méthode, de propriété et de paramètre de fonction. Chaque type de decorator a une signature et un comportement spécifiques.
+
+## 75 - Decorators Factories
+
+Les decorators factories sont une fonctionnalité avancée de TypeScript qui permet de créer des decorators paramétrisés. Les decorators factories sont des fonctions qui retournent des decorators, ce qui permet de les configurer avec des paramètres.
+
+Voici un exemple d'utilisation d'un decorator factory :
+
+```typescript
+// Définition d'un decorator factory
+function log(message: string) {
+  // Définition du decorator
+  return function (target: any, key: string) {
+    // Logique du decorator
+    console.log(`[${message}] - Le decorator log a été appliqué à la méthode ${key} de la classe ${target.constructor.name}`);
+  };
+}
+
+// Utilisation du decorator factory
+class MaClasse {
+  @log("Message de log")
+  maMethode() {
+    // ...
+  }
+}
+```
+
+> Dans cet exemple, nous définissons un decorator factory appelé log. Le decorator factory prend un paramètre message qui représente le message de log à afficher. À l'intérieur du decorator factory, nous retournons une fonction qui définit le decorator réel.
+
+> En utilisant le decorator factory log("Message de log") avec l'annotation @log, nous appliquons le decorator à la méthode maMethode. Le message spécifié dans le decorator factory sera affiché chaque fois que la méthode est appelée.
+
+> Les decorators factories permettent de créer des decorators flexibles et réutilisables, car ils peuvent être configurés avec différents paramètres. Cela permet d'appliquer des logiques spécifiques en fonction des besoins.
+
+> Il est important de noter que les decorators factories sont appelés une seule fois lors de la déclaration de la classe, contrairement aux decorators eux-mêmes qui sont appelés à chaque utilisation du decorator.
