@@ -1021,3 +1021,33 @@ console.log(maConstante);
 > Il existe également d'autres formes d'importation et d'exportation dans les modules ES6, telles que l'importation/exportation par défaut (default) et l'importation/exportation groupée (* as). Ces fonctionnalités permettent une plus grande flexibilité dans la gestion des modules.
 
 > Les modules ES6 offrent une méthode moderne et standardisée pour organiser votre code TypeScript et gérer les dépendances entre les fichiers. Ils sont largement utilisés dans les projets TypeScript actuels.
+
+
+## 74 - Introduction aux Decorators
+
+Les decorators sont une fonctionnalité avancée de TypeScript qui permet d'ajouter des métadonnées et de modifier le comportement des classes, méthodes, propriétés et paramètres de fonction. Les decorators sont souvent utilisés dans le développement d'applications basées sur des frameworks tels que Angular.
+
+Voici un exemple simple d'utilisation d'un decorator :
+
+```typescript
+// Définition d'un decorator
+function log(target: any, key: string) {
+  // Logique du decorator
+  console.log(`Le decorator log a été appliqué à la méthode ${key} de la classe ${target.constructor.name}`);
+}
+
+// Utilisation du decorator
+class MaClasse {
+  @log
+  maMethode() {
+    // ...
+  }
+}
+```
+> Dans cet exemple, nous définissons un decorator appelé log. Le decorator prend deux paramètres : target qui représente la classe ou l'objet cible, et key qui représente le nom de la méthode ou de la propriété cible. Dans la logique du decorator, nous affichons un message indiquant quelle méthode a été décorée et à quelle classe elle appartient.
+
+> En utilisant le decorator log avec l'annotation @log au-dessus de la méthode maMethode, nous appliquons le decorator à cette méthode. Ainsi, chaque fois que la méthode est appelée, le message défini dans le decorator sera affiché.
+
+> Les decorators offrent une grande flexibilité et peuvent être utilisés pour ajouter des fonctionnalités supplémentaires aux classes et aux objets, telles que la validation des entrées, la journalisation, l'injection de dépendances, etc.
+
+> Il existe plusieurs types de decorators en TypeScript, tels que les decorators de classe, de méthode, de propriété et de paramètre de fonction. Chaque type de decorator a une signature et un comportement spécifiques.
