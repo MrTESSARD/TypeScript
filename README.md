@@ -1226,3 +1226,34 @@ person.name = "Jane Smith"; // Erreur : la propriété est en lecture seule
 > Lorsque nous appelons la méthode greet, le decorator log affiche un message avec les arguments de la méthode. Lorsque nous essayons de modifier la propriété name, nous obtenons une erreur car le decorator readonly a modifié l'accessor pour le rendre en lecture seule.
 
 > Les decorators sur les méthodes et accessors offrent une manière élégante d'étendre le comportement des méthodes et de contrôler l'accès aux propriétés.
+
+## 80 - Decorator sur Paramètres
+
+En TypeScript, il est possible d'appliquer des decorators sur les paramètres d'une méthode ou d'une fonction. Les decorators peuvent être utilisés pour ajouter des fonctionnalités supplémentaires ou modifier le comportement des paramètres.
+
+Voici un exemple d'utilisation de decorators sur les paramètres :
+
+```typescript
+// Définition du decorator
+function logParameter(target: any, methodName: string, parameterIndex: number) {
+  console.log(`Méthode ${methodName} - Paramètre ${parameterIndex + 1}`);
+}
+
+// Utilisation du decorator
+class Calculator {
+  multiply(@logParameter x: number, @logParameter y: number): number {
+    return x * y;
+  }
+}
+
+// Test du decorator
+const calculator = new Calculator();
+const result = calculator.multiply(2, 3); // Affiche "Méthode multiply - Paramètre 1" et "Méthode multiply - Paramètre 2"
+console.log(result); // Affiche 6
+```
+
+> Dans cet exemple, nous définissons un decorator logParameter qui est appliqué aux paramètres x et y de la méthode multiply de la classe Calculator. Le decorator logParameter affiche simplement un message indiquant le nom de la méthode et l'index du paramètre.
+
+> Lorsque nous appelons la méthode multiply avec les valeurs 2 et 3, les decorators sont exécutés et affichent les messages correspondants. Ensuite, la méthode effectue la multiplication des deux paramètres et retourne le résultat.
+
+> Les decorators sur les paramètres permettent d'ajouter des fonctionnalités supplémentaires ou de réaliser des opérations spécifiques avant ou après l'utilisation des paramètres.

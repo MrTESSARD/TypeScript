@@ -1,80 +1,44 @@
-// 79. Decorators Méthodes - Accessors
-
-// function setterLog(
-//   target: any, propertyKey: string, descriptor: PropertyDescriptor
-//   ) {
-//     // console.log(target); //prototype de la class
-//     // console.log(propertyKey);//setColor
-//     // console.log(descriptor);//propriétés du descriptor
+// 80. Decorator sur Paramètres
+function methodlog(
+  target: any,
+  name: string,
+  descriptor: PropertyDescriptor) {
+    console.log("je suis dans le decorator de la méthode");
   
-// }
-// function infosLog(
-//   target: any, propertyKey: string, descriptor: PropertyDescriptor
-//   ) {
-//     console.log(target); //prototype de la class
-//     console.log(propertyKey);//setColor
-//     console.log(descriptor);//propriétés du descriptor
-  
-// }
-// class Car {
-//   brand:string
-//   private color:string
-
-//   constructor(b:string, c:string) {
-//     this.brand=b
-//     this.color=c
-
-    
-//   }
-//   @setterLog
-//   setColor(color:string){//private
-//     this.color=color
-//   }
-//   @infosLog
-//   infos(){//public
-//     return`Marque : ${this.brand} | ${this.color}`
-//   }
-// }
-
-// const opel=new Car("Opel","red")
-// // console.log(opel);
-// console.log(opel.infos());
-// opel.infos=function () {
-//   return "Hello"
-  
-// }
-// console.log(opel.infos());
-
-
-function readonly(value:boolean){
-  return function (
-    target: any, propertyKey: string, descriptor: PropertyDescriptor
-    ) {
-    // console.log(descriptor);
-    descriptor.writable=value //interdit la modification   getHairColor(){
-    }
 }
+function logparam(
+  target: any,
+    name: string,
+    position: number
+) {
+  console.log(target); //proto
+  console.log(name);//loginMsg
+  console.log(position);//0
+  console.log("je suis dans le decorator du paramètre");
 
+}
 
 class Person {
-  constructor(public eyes:string, private hair:string) {
-
-    
+  constructor(public age: number, public eyes: string, private hair: string) {}
+ 
+  @methodlog
+  loginMsg(@logparam minAge: number, textOne: string, textTwo: string) {
+    console.log(this.age);
+    if (this.age > 17) {
+      return textOne;
+    }
+    return textTwo;
   }
-  @readonly(true)
-  getHairColor(){
-return this.hair
-}
 }
 
-const person = new Person("blue","balck")
-// person.eyes="brown"
-// console.log(person.eyes);
-console.log(person.getHairColor());
-person.getHairColor=function () {
-  return "Hello"
-  
-}
-console.log(person.getHairColor());//script.js:68 Uncaught TypeError: Cannot assign to read only property 'getHairColor' of object '#<Person>'
+//sortie
+//je suis dans le decorator du paramètre
+//script.js:13 je suis dans le decorator de la méthode
+const person = new Person(30, "blue", "balck");
 
-
+// console.log(
+//   person.loginMsg(18, "Inscription autorisée", "Inscription refusée")
+// );
+// console.log(
+//   person.loginMsg(18, "Inscription autorisée", "Inscription refusée")
+// );
