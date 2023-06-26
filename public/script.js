@@ -5,47 +5,56 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-// 80. Decorator sur Paramètres
+// 81. Decorator - Return Constructor Function
+//Alteration méthodes 
+function changeArtist(artist) {
+    // Ce décorateur de classe reçoit un argument 'artist' de type string.
+    return function (constructor) {
+        // Cette fonction retourne une classe modifiée.
+        return class {
+            age;
+            eyes;
+            artist = artist;
+            // Cette classe contient une propriété 'artist' qui est initialisée avec la valeur de l'argument 'artist' du décorateur.
+            loginMsg() {
+                // Cette méthode retourne un message de salutation.
+                return "Hello";
+            }
+        };
+    };
+}
 function methodlog(target, name, descriptor) {
-    console.log("je suis dans le decorator de la méthode");
+    // Cette fonction est vide et n'a pas de logique à l'intérieur.
 }
-function logparam(target, name, position) {
-    console.log(target); //proto
-    console.log(name); //loginMsg
-    console.log(position); //0
-    console.log("je suis dans le decorator du paramètre");
-}
+let Person = 
+// Ce décorateur de classe 'changeArtist' est appliqué à la classe 'Person' avec l'argument 'Jon Singer Sargent'.
 class Person {
     age;
     eyes;
-    hair;
-    constructor(age, eyes, hair) {
+    artist;
+    constructor(age, eyes, artist) {
         this.age = age;
         this.eyes = eyes;
-        this.hair = hair;
+        this.artist = artist;
     }
+    // Cette classe 'Person' possède un constructeur qui initialise les propriétés 'age', 'eyes', et 'artist'.
     loginMsg(minAge, textOne, textTwo) {
+        // Cette méthode 'loginMsg' prend trois arguments et retourne un message en fonction de la valeur de 'age'.
         console.log(this.age);
         if (this.age > 17) {
             return textOne;
         }
         return textTwo;
     }
-}
-__decorate([
-    methodlog,
-    __param(0, logparam)
-], Person.prototype, "loginMsg", null);
-//sortie
-//je suis dans le decorator du paramètre
-//script.js:13 je suis dans le decorator de la méthode
-const person = new Person(30, "blue", "balck");
-// console.log(
-//   person.loginMsg(18, "Inscription autorisée", "Inscription refusée")
-// );
-// console.log(
-//   person.loginMsg(18, "Inscription autorisée", "Inscription refusée")
-// );
+};
+Person = __decorate([
+    changeArtist('Jon Singer Sargent')
+    // Ce décorateur de classe 'changeArtist' est appliqué à la classe 'Person' avec l'argument 'Jon Singer Sargent'.
+], Person);
+const person = new Person(30, "blue", "Picasso");
+// Une instance de la classe 'Person' est créée avec les valeurs 30, "blue", et "Picasso".
+console.log(`Artist ${person.artist}`); //Artist Jon Singer Sargent
+// Affiche le message "Artist Picasso", qui utilise la propriété 'artist' de l'instance 'person'.
+console.log(person.loginMsg(18, "Inscription autorisée", "Inscription refusée") //Hello
+);
+// Appelle la méthode 'loginMsg' de l'instance 'person' avec les arguments spécifiés et affiche le résultat en fonction de la valeur de 'age'.

@@ -1257,3 +1257,38 @@ console.log(result); // Affiche 6
 > Lorsque nous appelons la méthode multiply avec les valeurs 2 et 3, les decorators sont exécutés et affichent les messages correspondants. Ensuite, la méthode effectue la multiplication des deux paramètres et retourne le résultat.
 
 > Les decorators sur les paramètres permettent d'ajouter des fonctionnalités supplémentaires ou de réaliser des opérations spécifiques avant ou après l'utilisation des paramètres.
+
+## 81 - Decorator - Return Constructor Function
+
+En TypeScript, les decorators peuvent également être utilisés pour modifier la fonction de constructeur d'une classe. Ils permettent de transformer ou d'enrichir la classe en modifiant son comportement lors de son instanciation.
+
+Voici un exemple d'utilisation de decorators pour retourner une fonction de constructeur modifiée :
+
+```typescript
+// Définition du decorator
+function logConstructor<T extends { new (...args: any[]): {} }>(constructor: T) {
+  return class extends constructor {
+    constructor(...args: any[]) {
+      console.log('Avant instanciation');
+      super(...args);
+      console.log('Après instanciation');
+    }
+  };
+}
+
+// Utilisation du decorator
+@logConstructor
+class Person {
+  constructor(public name: string) {}
+}
+
+// Test du decorator
+const person = new Person('John Doe'); // Affiche "Avant instanciation" et "Après instanciation"
+console.log(person.name); // Affiche "John Doe"
+```
+
+> Dans cet exemple, nous définissons le decorator logConstructor qui retourne une fonction de constructeur modifiée. Cette fonction de constructeur modifiée étend la classe d'origine en ajoutant des messages de journalisation avant et après l'instanciation de la classe.
+
+> En appliquant le decorator @logConstructor sur la classe Person, nous modifions la fonction de constructeur de la classe. Lorsque nous instancions un objet Person, les messages "Avant instanciation" et "Après instanciation" sont affichés dans la console.
+
+> Les decorators appliqués à la fonction de constructeur offrent une manière flexible de modifier le comportement d'une classe lors de son instanciation.
