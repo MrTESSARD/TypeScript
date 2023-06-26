@@ -1168,3 +1168,61 @@ console.log(person.name); // Affiche "Get name: Jane Smith"
 > Lorsque nous accédons à la propriété name, le getter du decorator est appelé et affiche un message de journalisation indiquant la lecture de la propriété avec sa valeur actuelle. Lorsque nous assignons une nouvelle valeur à la propriété name, le setter du decorator est appelé et affiche un message de journalisation indiquant l'assignation de la nouvelle valeur.
 
 > Les decorators pour les propriétés de classe permettent d'ajouter des fonctionnalités de suivi, de validation, de transformation des données ou d'autres comportements personnalisés aux propriétés d'une classe.
+
+## 79 - Decorators Méthodes - Accessors
+
+En TypeScript, il est possible d'appliquer des decorators aux méthodes et accessors (getters et setters) d'une classe. Les decorators peuvent être utilisés pour ajouter des fonctionnalités supplémentaires, effectuer des opérations avant ou après l'exécution de la méthode, ou encore pour modifier le comportement de l'accessor.
+
+Voici un exemple d'utilisation de decorators sur des méthodes et accessors :
+
+```typescript
+// Définition des decorators
+function log(target: any, key: string, descriptor: PropertyDescriptor) {
+  const originalMethod = descriptor.value;
+
+  descriptor.value = function (...args: any[]) {
+    console.log(`Méthode ${key} appelée avec les arguments ${JSON.stringify(args)}`);
+    return originalMethod.apply(this, args);
+  };
+
+  return descriptor;
+}
+
+function readonly(target: any, key: string, descriptor: PropertyDescriptor) {
+  descriptor.writable = false;
+  return descriptor;
+}
+
+// Utilisation des decorators
+class Person {
+  private _name: string;
+
+  constructor(name: string) {
+    this._name = name;
+  }
+
+  @log
+  @readonly
+  get name(): string {
+    return this._name;
+  }
+
+  @log
+  greet() {
+    console.log(`Bonjour, je m'appelle ${this.name}`);
+  }
+}
+
+// Test des decorators
+const person = new Person("John Doe");
+person.greet(); // Affiche "Méthode greet appelée avec les arguments []" et "Bonjour, je m'appelle John Doe"
+person.name = "Jane Smith"; // Erreur : la propriété est en lecture seule
+```
+
+> Dans cet exemple, nous définissons deux decorators : log et readonly. Le decorator log ajoute une fonction de journalisation avant l'exécution de la méthode ou de l'accessor décoré, tandis que le decorator readonly rend l'accessor en lecture seule.
+
+> En utilisant les decorators @log et @readonly au-dessus de l'accessor name et de la méthode greet de la classe Person, nous ajoutons les fonctionnalités supplémentaires fournies par ces decorators.
+
+> Lorsque nous appelons la méthode greet, le decorator log affiche un message avec les arguments de la méthode. Lorsque nous essayons de modifier la propriété name, nous obtenons une erreur car le decorator readonly a modifié l'accessor pour le rendre en lecture seule.
+
+> Les decorators sur les méthodes et accessors offrent une manière élégante d'étendre le comportement des méthodes et de contrôler l'accès aux propriétés.
