@@ -1116,3 +1116,55 @@ export class MonComponent {
 > En utilisant le decorator factory @CustomComponent({...}), nous appliquons le decorator Component au-dessus de la classe MonComponent. Cela définit le composant avec le sélecteur et le template spécifiés.
 
 > Les decorator factories permettent de créer des decorators personnalisés pour étendre les fonctionnalités d'Angular ou pour ajouter des comportements spécifiques aux composants.
+
+## 78 - Decorator pour une propriété de classe
+
+Dans TypeScript, il est possible de créer des decorators pour les propriétés d'une classe. Les decorators appliqués à une propriété peuvent ajouter des fonctionnalités supplémentaires, modifier le comportement ou fournir des métadonnées sur la propriété.
+
+Voici un exemple de decorator pour une propriété de classe :
+
+```typescript
+// Définition du decorator pour une propriété
+function logProperty(target: any, key: string) {
+  let value = target[key];
+
+  // const getter = () => {
+  //   console.log(`Get ${key}: ${value}`);
+  //   return value;
+  // };
+
+  // const setter = (newValue: any) => {
+  //   console.log(`Set ${key}: ${newValue}`);
+  //   value = newValue;
+  // };
+
+  // // Redéfinition des accesseurs de la propriété
+  // Object.defineProperty(target, key, {
+  //   get: getter,
+  //   set: setter,
+  //   enumerable: true,
+  //   configurable: true,
+  // });
+}
+
+// Utilisation du decorator pour une propriété
+class Person {
+  @logProperty
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+// Test du decorator
+const person = new Person("John Doe");
+console.log(person.name); // Affiche "Get name: John Doe"
+person.name = "Jane Smith"; 
+console.log(person.name); // Affiche "Get name: Jane Smith"
+```
+> Dans cet exemple, nous définissons un decorator appelé logProperty qui est appliqué à la propriété name de la classe Person. Le decorator modifie les accesseurs de la propriété pour ajouter des messages de journalisation lors de la lecture et de l'écriture de la valeur de la propriété.
+
+> Lorsque nous accédons à la propriété name, le getter du decorator est appelé et affiche un message de journalisation indiquant la lecture de la propriété avec sa valeur actuelle. Lorsque nous assignons une nouvelle valeur à la propriété name, le setter du decorator est appelé et affiche un message de journalisation indiquant l'assignation de la nouvelle valeur.
+
+> Les decorators pour les propriétés de classe permettent d'ajouter des fonctionnalités de suivi, de validation, de transformation des données ou d'autres comportements personnalisés aux propriétés d'une classe.
