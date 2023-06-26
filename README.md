@@ -1084,3 +1084,35 @@ class MaClasse {
 > Les decorators factories permettent de créer des decorators flexibles et réutilisables, car ils peuvent être configurés avec différents paramètres. Cela permet d'appliquer des logiques spécifiques en fonction des besoins.
 
 > Il est important de noter que les decorators factories sont appelés une seule fois lors de la déclaration de la classe, contrairement aux decorators eux-mêmes qui sont appelés à chaque utilisation du decorator.
+
+## 76 - Decorator Factories - Exemple Angular Component
+
+Dans le contexte d'Angular, les decorator factories sont couramment utilisés pour définir les composants. Un composant Angular est une classe décorée avec le decorator `@Component`, qui est un decorator factory fourni par le framework.
+
+Voici un exemple simplifié de la définition d'un composant Angular à l'aide d'un decorator factory :
+
+```typescript
+import { Component } from '@angular/core';
+
+// Définition du decorator factory pour un composant Angular
+function CustomComponent(config: { selector: string, template: string }) {
+  return function (target: any) {
+    // Logique du decorator
+    Component(config)(target);
+  };
+}
+
+// Utilisation du decorator factory pour définir un composant
+@CustomComponent({
+  selector: 'app-mon-component',
+  template: '<h1>Mon composant personnalisé</h1>'
+})
+export class MonComponent {
+  // ...
+}
+```
+> Dans cet exemple, nous définissons un decorator factory appelé CustomComponent. Le decorator factory prend un paramètre config qui représente la configuration du composant, comprenant le sélecteur et le template. À l'intérieur du decorator factory, nous retournons une fonction qui appelle le decorator Component fourni par Angular avec la configuration fournie.
+
+> En utilisant le decorator factory @CustomComponent({...}), nous appliquons le decorator Component au-dessus de la classe MonComponent. Cela définit le composant avec le sélecteur et le template spécifiés.
+
+> Les decorator factories permettent de créer des decorators personnalisés pour étendre les fonctionnalités d'Angular ou pour ajouter des comportements spécifiques aux composants.
