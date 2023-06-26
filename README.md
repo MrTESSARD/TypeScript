@@ -1292,3 +1292,41 @@ console.log(person.name); // Affiche "John Doe"
 > En appliquant le decorator @logConstructor sur la classe Person, nous modifions la fonction de constructeur de la classe. Lorsque nous instancions un objet Person, les messages "Avant instanciation" et "Après instanciation" sont affichés dans la console.
 
 > Les decorators appliqués à la fonction de constructeur offrent une manière flexible de modifier le comportement d'une classe lors de son instanciation.
+
+## 82 - Decorator Extends Constructor Function
+
+En TypeScript, les decorators peuvent être utilisés pour étendre une fonction de constructeur existante, en ajoutant des propriétés ou des méthodes supplémentaires à la classe.
+
+Voici un exemple d'utilisation de decorators avec `return class extends constructor` pour étendre une fonction de constructeur :
+
+```typescript
+// Définition du decorator
+function addAge<T extends { new (...args: any[]): {} }>(constructor: T) {
+  return class extends constructor {
+    age: number = 25;
+  };
+}
+
+// Utilisation du decorator
+@addAge
+class Person {
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+// Test du decorator
+const person = new Person('John Doe');
+console.log(person.name); // Affiche "John Doe"
+console.log(person.age); // Affiche 25
+```
+
+> Dans cet exemple, nous définissons le decorator addAge avec return class extends constructor, ce qui permet d'étendre la fonction de constructeur existante en ajoutant une propriété age à la classe Person. La classe étendue hérite de toutes les fonctionnalités de la classe d'origine.
+
+> Lorsque le decorator @addAge est appliqué sur la classe Person, la propriété age est ajoutée à toutes les instances de la classe Person avec la valeur 25.
+
+> En instanciant un objet Person, nous pouvons accéder à la propriété name définie dans le constructeur, ainsi qu'à la propriété age ajoutée par le decorator.
+
+> Les decorators offrent une puissante façon d'étendre et de modifier le comportement des classes existantes.
