@@ -1,20 +1,21 @@
 // 81. Decorator - Return Constructor Function
 //Alteration méthodes 
-function changeArtist(artist: string) {
+function changeArtist(artist: string, id:string) {
   // Ce décorateur de classe reçoit un argument 'artist' de type string.
-  return function (constructor: any) {
+  return function<T extends {new (...args:any[]):{age:number}}> (constructor: T) {
     // Cette fonction retourne une classe modifiée.
-    return class {
-      public age: number;
-      public eyes: string;
-      public artist: string = artist;
-      // Cette classe contient une propriété 'artist' qui est initialisée avec la valeur de l'argument 'artist' du décorateur.
-
-      loginMsg() {
-        // Cette méthode retourne un message de salutation.
-        return "Hello";
+    return class extends constructor{
+      constructor(...args:any[]){
+        super()
+        const el= document.getElementById(id) as HTMLDivElement
+        const h1 = document.createElement("h1")
+        h1.innerText=artist
+        el.append(h1)
+          this.age=20
+        
       }
-    };
+
+    }
   };
 }
 
@@ -26,7 +27,7 @@ function methodlog(
   // Cette fonction est vide et n'a pas de logique à l'intérieur.
 }
 
-@changeArtist('Jon Singer Sargent')
+@changeArtist('Jon Singer Sargent', "title")
 // Ce décorateur de classe 'changeArtist' est appliqué à la classe 'Person' avec l'argument 'Jon Singer Sargent'.
 class Person {
   constructor(

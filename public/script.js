@@ -7,18 +7,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 // 81. Decorator - Return Constructor Function
 //Alteration méthodes 
-function changeArtist(artist) {
+function changeArtist(artist, id) {
     // Ce décorateur de classe reçoit un argument 'artist' de type string.
     return function (constructor) {
         // Cette fonction retourne une classe modifiée.
-        return class {
-            age;
-            eyes;
-            artist = artist;
-            // Cette classe contient une propriété 'artist' qui est initialisée avec la valeur de l'argument 'artist' du décorateur.
-            loginMsg() {
-                // Cette méthode retourne un message de salutation.
-                return "Hello";
+        return class extends constructor {
+            constructor(...args) {
+                super();
+                const el = document.getElementById(id);
+                const h1 = document.createElement("h1");
+                h1.innerText = artist;
+                el.append(h1);
+                this.age = 20;
             }
         };
     };
@@ -48,7 +48,7 @@ class Person {
     }
 };
 Person = __decorate([
-    changeArtist('Jon Singer Sargent')
+    changeArtist('Jon Singer Sargent', "title")
     // Ce décorateur de classe 'changeArtist' est appliqué à la classe 'Person' avec l'argument 'Jon Singer Sargent'.
 ], Person);
 const person = new Person(30, "blue", "Picasso");
