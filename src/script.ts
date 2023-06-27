@@ -1,51 +1,32 @@
-// 83. Exercice 1: Méthode decorator pour bind this
+// 85. Conditional Types
 
-function bindF(target:any, name:string, descriptor:PropertyDescriptor) {
-  const orgMethod =descriptor.value
-  let newDescriptor:PropertyDescriptor
-  newDescriptor={
-    get(){
-      return orgMethod.bind(this)
-    }
-  }
-  return newDescriptor
-  
-}
+type MyType = number
+type MyType2 = MyType
 
-class Person {
-  userName: string
-  constructor(name:string
-  ) {
-    this.userName=name
+//via le conditional type
+type MyConditionalType = MyType extends string? string : null//null
+type MyConditionalType2 = MyType extends number? string : null//string
+
+type MyType3<T> = T extends number ? "number" : "random"
+type WithNumber = MyType3<number>//number
+type WithString = MyType3<string>//number
+
+type TypeName<T> = 
+  T extends string  ? "string": 
+  T extends number  ? "number"  : 
+  T extends boolean  ? "boolean"  : 
+  T extends undefined  ? "undefined"  : 
+  T extends Function  ? "function"  : 
+  "object";
+
+  function typeName<T>(arg:T) :TypeName<T>{
+    return typeof arg as TypeName<T>
     
   }
-  getName(){
-    console.log(this.userName);
-  }
-  getThis(){//sans decorator
-    console.log(this.userName);
-    console.log(this);
-  }
-  @bindF
-  getBind(){//avec decorator
-    console.log(this.userName);
-    console.log(this);
-  }
-
-}
-const btn = document.querySelector('button')!
-const steve = new Person('Steve Smith')
-btn.addEventListener('click',()=>steve.getName())// Steve Smith
-
-btn.addEventListener('click',steve.getName)// undefined
-
-btn.addEventListener('click',steve.getThis)// <button>Click my</button> !! car il y a une confusion entre this de la classe et this de l'objet "button"
-
-btn.addEventListener('click',()=>steve.getThis())//Person {userName: 'Steve Smith'} objet
-
-btn.addEventListener('click',steve.getThis.bind(steve))// Person {userName: 'Steve Smith'} objet
-
-// Person {userName: 'Steve Smith'} objet !! il n'y a plus de confusion entre la classe et l'objet "button" car il y a le decorator avec get(){
-  //   return orgMethod.bind(this)
-  // }
-btn.addEventListener('click',steve.getBind)
+  const strVal=typeName("Hello")//string
+  const numVal=typeName(20)//number
+  const undefinedVal=typeName(undefined)//undefined
+  const funVal=typeName(()=>console.log(("hello")))//function
+  const objVal=typeName([])//object
+  const nullVal=typeName(null)//null
+  console.log(typeName);

@@ -1364,3 +1364,35 @@ btn.addEventListener('click',steve.getBind)
 - steve.getThis.bind(steve) : Affiche le nom de l'utilisateur et l'instance de Person, avec le this correctement lié à l'instance de Person.
 - steve.getBind : Affiche le nom de l'utilisateur et l'instance de Person, avec le this correctement lié à l'instance de Person grâce au decorator @bindF.
 Le decorator @bindF nous permet de binder automatiquement le this de la méthode getBind à l'instance de Person lorsqu'elle est utilisée dans les écouteurs d'événements.
+
+## 85 - Conditional Types
+
+Les Conditional Types, ou types conditionnels, sont une fonctionnalité puissante de TypeScript qui permet de définir des types conditionnels en fonction de conditions. Les types conditionnels sont souvent utilisés pour effectuer des opérations de filtrage sur les types ou pour créer des types plus complexes en fonction de certaines conditions.
+
+Voici un exemple simple d'utilisation d'un Conditional Type :
+
+```typescript
+// Définition d'un Conditional Type
+type TypeName<T> =
+  T extends string ? "string" :
+  T extends number ? "number" :
+  T extends boolean ? "boolean" :
+  T extends undefined ? "undefined" :
+  T extends Function ? "function" :
+  "object";
+
+// Utilisation du Conditional Type
+type TypeOfString = TypeName<string>;  // "string"
+type TypeOfNumber = TypeName<number>;  // "number"
+type TypeOfBoolean = TypeName<boolean>;  // "boolean"
+type TypeOfUndefined = TypeName<undefined>;  // "undefined"
+type TypeOfFunction = TypeName<() => void>;  // "function"
+type TypeOfObject = TypeName<object>;  // "object"
+```
+> Dans cet exemple, nous définissons un Conditional Type appelé TypeName. Le Conditional Type prend un paramètre générique T et utilise des conditions avec l'opérateur extends pour déterminer le type de T et renvoyer une chaîne de caractères correspondante.
+
+> En utilisant le Conditional Type TypeName avec différents types, nous pouvons obtenir les types correspondants tels que "string", "number", "boolean", "undefined", "function" ou "object".
+
+> Les Conditional Types offrent une grande flexibilité et permettent de créer des types dynamiques en fonction de conditions spécifiques. Ils sont souvent utilisés dans des cas complexes où le type doit être déterminé en fonction de la structure ou des propriétés d'un autre type.
+
+> Il existe plusieurs opérateurs et techniques avancées pour manipuler et combiner les Conditional Types afin de répondre à des besoins spécifiques.
