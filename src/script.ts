@@ -1,32 +1,58 @@
-// 85. Conditional Types
+// 87. Mixins
 
-type MyType = number
-type MyType2 = MyType
+class Person{
+  speak(){console.log("je parle");  }
+  walk(){console.log("je marche");  }
 
-//via le conditional type
-type MyConditionalType = MyType extends string? string : null//null
-type MyConditionalType2 = MyType extends number? string : null//string
+}
 
-type MyType3<T> = T extends number ? "number" : "random"
-type WithNumber = MyType3<number>//number
-type WithString = MyType3<string>//number
+class Alien {
+  telepathy(){console.log("Je communique sans parler");}
+  
+}
 
-type TypeName<T> = 
-  T extends string  ? "string": 
-  T extends number  ? "number"  : 
-  T extends boolean  ? "boolean"  : 
-  T extends undefined  ? "undefined"  : 
-  T extends Function  ? "function"  : 
-  "object";
+// class Roger extends Person, Alien {//pas possible
+  
+// }
+interface Roger extends Person, Alien {// possible pour une interface 
+  
+}
+const test:Roger={//déclarons une variable test de type "Roger" et lui attribuons un objet qui implémente les membres requis par l'interface "Roger". Dans cet exemple, nous fournissons des implémentations vides pour les méthodes speak(), walk(), et telepathy()
+  speak():void{ },
+  walk():void{},
+  telepathy():void{}
+}
 
-  function typeName<T>(arg:T) :TypeName<T>{
-    return typeof arg as TypeName<T>
-    
+type Class = new(...arg:any[])=>any
+
+function PersonMixin<Base extends Class>(base:Base) {
+  return class extends base{
+    speak(){console.log("je parle");  }
+    walk(){console.log("je marche");  }
   }
-  const strVal=typeName("Hello")//string
-  const numVal=typeName(20)//number
-  const undefinedVal=typeName(undefined)//undefined
-  const funVal=typeName(()=>console.log(("hello")))//function
-  const objVal=typeName([])//object
-  const nullVal=typeName(null)//null
-  console.log(typeName);
+}
+function AlienMixin<Base extends Class>(base:Base) {
+  return class extends base{
+    telepathy(){console.log(`Je communique sans parler. j'ai ${this.age}`);}
+
+  }
+}
+
+const Roger = PersonMixin(AlienMixin(class{
+age:number=5000//je peux ajouter en plus des propriétés et des mthodes 
+}))
+
+const roger = new Roger()
+roger.speak()
+roger.telepathy()
+console.log(roger.age);
+console.log(roger
+  );
+
+
+
+
+
+
+
+ 

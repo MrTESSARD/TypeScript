@@ -1,12 +1,33 @@
 "use strict";
-// 85. Conditional Types
-function typeName(arg) {
-    return typeof arg;
+// 87. Mixins
+class Person {
+    speak() { console.log("je parle"); }
+    walk() { console.log("je marche"); }
 }
-const strVal = typeName("Hello"); //string
-const numVal = typeName(20); //number
-const undefinedVal = typeName(undefined); //undefined
-const funVal = typeName(() => console.log(("hello"))); //function
-const objVal = typeName([]); //object
-const nullVal = typeName(null); //null
-console.log(typeName);
+class Alien {
+    telepathy() { console.log("Je communique sans parler"); }
+}
+const test = {
+    speak() { },
+    walk() { },
+    telepathy() { }
+};
+function PersonMixin(base) {
+    return class extends base {
+        speak() { console.log("je parle"); }
+        walk() { console.log("je marche"); }
+    };
+}
+function AlienMixin(base) {
+    return class extends base {
+        telepathy() { console.log(`Je communique sans parler. j'ai ${this.age}`); }
+    };
+}
+const Roger = PersonMixin(AlienMixin(class {
+    age = 5000; //je peux ajouter en plus des propriétés et des mthodes 
+}));
+const roger = new Roger();
+roger.speak();
+roger.telepathy();
+console.log(roger.age);
+console.log(roger);

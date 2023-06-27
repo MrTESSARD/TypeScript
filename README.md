@@ -1433,3 +1433,52 @@ type NullablePerson = Nullable<Person>;
 > Les Mapped Types offrent une grande flexibilité et permettent de créer des types dérivés à partir de types existants en appliquant des transformations aux propriétés. Ils sont souvent utilisés pour créer des versions optionnelles, immuables ou d'autres variations d'un type existant.
 
 > Il existe plusieurs opérations et techniques avancées pour manipuler et combiner les Mapped Types afin de répondre à des besoins spécifiques.
+
+
+## 87. Mixins
+
+Les Mixins sont une technique utilisée en TypeScript pour ajouter des fonctionnalités supplémentaires à une classe en combinant les fonctionnalités de plusieurs classes. Les Mixins permettent d'étendre dynamiquement le comportement d'une classe sans avoir à utiliser l'héritage classique.
+
+Voici un exemple d'utilisation des Mixins avec une syntaxe utilisant le type `Class` :
+
+```typescript
+type Class = new (...args: any[]) => any;
+
+function PersonMixin<Base extends Class>(base: Base) {
+  return class extends base {
+    speak() {
+      console.log("Je parle.");
+    }
+
+    walk() {
+      console.log("Je marche.");
+    }
+  };
+}
+
+function AlienMixin<Base extends Class>(base: Base) {
+  return class extends base {
+    telepathy() {
+      console.log(`Je communique sans parler. J'ai ${this.age} ans.`);
+    }
+  };
+}
+
+const Roger = PersonMixin(AlienMixin(class {
+  age: number = 5000;
+}));
+
+const roger = new Roger();
+roger.speak(); // Affiche: Je parle.
+roger.telepathy(); // Affiche: Je communique sans parler. J'ai 5000 ans.
+console.log(roger.age); // Affiche: 5000
+console.log(roger); // Affiche: [Object]
+```
+
+> Dans cet exemple, nous avons deux Mixins : PersonMixin et AlienMixin. Chaque Mixin est une fonction qui prend une classe de base en paramètre et renvoie une nouvelle classe étendue avec des fonctionnalités supplémentaires.
+
+> En utilisant le Mixin PersonMixin et le Mixin AlienMixin, nous créons une classe Roger en combinant les fonctionnalités des deux Mixins avec une classe de base anonyme. La classe Roger possède donc les méthodes speak, walk et telepathy, ainsi que la propriété age.
+
+> En créant une instance de Roger avec new Roger(), nous pouvons utiliser toutes les fonctionnalités ajoutées par les Mixins. Par exemple, nous appelons la méthode speak qui affiche "Je parle." et la méthode telepathy qui affiche "Je communique sans parler. J'ai 5000 ans." Nous accédons également à la propriété age et affichons sa valeur.
+
+> Les Mixins permettent de combiner des fonctionnalités de manière flexible et réutilisable, offrant ainsi une alternative à l'héritage classique pour étendre le comportement d'une classe.
