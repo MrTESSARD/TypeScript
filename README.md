@@ -1301,32 +1301,66 @@ Voici un exemple d'utilisation de decorators avec `return class extends construc
 
 ```typescript
 // Définition du decorator
-function addAge<T extends { new (...args: any[]): {} }>(constructor: T) {
-  return class extends constructor {
-    age: number = 25;
-  };
-}
-
-// Utilisation du decorator
-@addAge
-class Person {
-  name: string;
-
-  constructor(name: string) {
-    this.name = name;
+function bindF(target:any, name:string, descriptor:PropertyDescriptor) {
+  const orgMethod =descriptor.value
+  let newDescriptor:PropertyDescriptor
+  newDescriptor={
+    get(){
+      return orgMethod.bind(this)
+    }
   }
+  return newDescriptor
+  
 }
 
-// Test du decorator
-const person = new Person('John Doe');
-console.log(person.name); // Affiche "John Doe"
-console.log(person.age); // Affiche 25
+class Person {
+  userName: string
+  constructor(name:string
+  ) {
+    this.userName=name
+    
+  }
+  getName(){
+    console.log(this.userName);
+  }
+  getThis(){//sans decorator
+    console.log(this.userName);
+    console.log(this);
+  }
+  @bindF
+  getBind(){//avec decorator
+    console.log(this.userName);
+    console.log(this);
+  }
+
+}
+const btn = document.querySelector('button')!
+const steve = new Person('Steve Smith')
+btn.addEventListener('click',()=>steve.getName())// Steve Smith
+
+btn.addEventListener('click',steve.getName)// undefined
+
+btn.addEventListener('click',steve.getThis)// <button>Click my</button> !! car il y a une confusion entre this de la classe et this de l'objet "button"
+
+btn.addEventListener('click',()=>steve.getThis())//Person {userName: 'Steve Smith'} objet
+
+btn.addEventListener('click',steve.getThis.bind(steve))// Person {userName: 'Steve Smith'} objet
+
+// Person {userName: 'Steve Smith'} objet !! il n'y a plus de confusion entre la classe et l'objet "button" car il y a le decorator avec get(){
+  //   return orgMethod.bind(this)
+  // }
+btn.addEventListener('click',steve.getBind)
 ```
+> Dans cet exemple, nous avons la classe Person avec trois méthodes : getName, getThis et getBind. La méthode getThis n'a pas de decorator, tandis que la méthode getBind a le decorator @bindF.
 
-> Dans cet exemple, nous définissons le decorator addAge avec return class extends constructor, ce qui permet d'étendre la fonction de constructeur existante en ajoutant une propriété age à la classe Person. La classe étendue hérite de toutes les fonctionnalités de la classe d'origine.
+> Le decorator bindF prend en paramètres la cible, le nom de la méthode et le descripteur de propriété. Il crée ensuite une nouvelle propriété get dans le descripteur de propriété qui renvoie la méthode originale bindée avec le this actuel.
 
-> Lorsque le decorator @addAge est appliqué sur la classe Person, la propriété age est ajoutée à toutes les instances de la classe Person avec la valeur 25.
+> Lorsque nous utilisons les méthodes dans les écouteurs d'événements click, nous pouvons observer leur comportement :
 
-> En instanciant un objet Person, nous pouvons accéder à la propriété name définie dans le constructeur, ainsi qu'à la propriété age ajoutée par le decorator.
-
-> Les decorators offrent une puissante façon d'étendre et de modifier le comportement des classes existantes.
+- steve.getName() : Affiche le nom de l'utilisateur.
+- steve.getName : Affiche le nom de l'utilisateur, mais le this n'est pas lié à l'instance de Person.
+- steve.getThis : Affiche le nom de l'utilisateur et l'instance de Person, mais le this n'est pas lié à l'instance de Person.
+- steve.getThis() : Affiche le nom de l'utilisateur et l'instance de Person, avec le this correctement lié à l'instance de Person.
+- steve.getThis.bind(steve) : Affiche le nom de l'utilisateur et l'instance de Person, avec le this correctement lié à l'instance de Person.
+- steve.getBind : Affiche le nom de l'utilisateur et l'instance de Person, avec le this correctement lié à l'instance de Person grâce au decorator @bindF.
+Le decorator @bindF nous permet de binder automatiquement le this de la méthode getBind à l'instance de Person lorsqu'elle est utilisée dans les écouteurs d'événements.

@@ -1,30 +1,51 @@
-// 82. Decorator Extends Constructor Function
+// 83. Exercice 1: Méthode decorator pour bind this
 
-function changeArtist<T extends { new (...args: any[]): {} }>(constructor: T) {
-  // Cette fonction de décorateur prend un constructeur comme argument et retourne une classe modifiée.
-  return class extends constructor {
-    newProperty = "Toto";
-    // Cette classe étend le constructeur d'origine et ajoute une nouvelle propriété 'newProperty'.
-  };
-}
-
-@changeArtist
-// Le décorateur 'changeArtist' est appliqué à la classe 'Person'.
-class Person {
-  constructor(
-    public age: number,
-    public eyes: string,
-    public artist: string
-  ) {}
-
-  loginMsg(minAge: number, textOne: string, textTwo: string) {
-    console.log(this.age);
-    if (this.age > 17) {
-      return textOne;
+function bindF(target:any, name:string, descriptor:PropertyDescriptor) {
+  const orgMethod =descriptor.value
+  let newDescriptor:PropertyDescriptor
+  newDescriptor={
+    get(){
+      return orgMethod.bind(this)
     }
-    return textTwo;
   }
+  return newDescriptor
+  
 }
 
-const person = new Person(30, "blue", "Picasso");
-console.log(person);
+class Person {
+  userName: string
+  constructor(name:string
+  ) {
+    this.userName=name
+    
+  }
+  getName(){
+    console.log(this.userName);
+  }
+  getThis(){//sans decorator
+    console.log(this.userName);
+    console.log(this);
+  }
+  @bindF
+  getBind(){//avec decorator
+    console.log(this.userName);
+    console.log(this);
+  }
+
+}
+const btn = document.querySelector('button')!
+const steve = new Person('Steve Smith')
+btn.addEventListener('click',()=>steve.getName())// Steve Smith
+
+btn.addEventListener('click',steve.getName)// undefined
+
+btn.addEventListener('click',steve.getThis)// <button>Click my</button> !! car il y a une confusion entre this de la classe et this de l'objet "button"
+
+btn.addEventListener('click',()=>steve.getThis())//Person {userName: 'Steve Smith'} objet
+
+btn.addEventListener('click',steve.getThis.bind(steve))// Person {userName: 'Steve Smith'} objet
+
+// Person {userName: 'Steve Smith'} objet !! il n'y a plus de confusion entre la classe et l'objet "button" car il y a le decorator avec get(){
+  //   return orgMethod.bind(this)
+  // }
+btn.addEventListener('click',steve.getBind)
