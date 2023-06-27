@@ -1396,3 +1396,40 @@ type TypeOfObject = TypeName<object>;  // "object"
 > Les Conditional Types offrent une grande flexibilité et permettent de créer des types dynamiques en fonction de conditions spécifiques. Ils sont souvent utilisés dans des cas complexes où le type doit être déterminé en fonction de la structure ou des propriétés d'un autre type.
 
 > Il existe plusieurs opérateurs et techniques avancées pour manipuler et combiner les Conditional Types afin de répondre à des besoins spécifiques.
+
+## 86 - Mapped Types
+
+Les Mapped Types, ou types mappés, sont une fonctionnalité puissante de TypeScript qui permet de transformer les propriétés d'un type existant pour créer un nouveau type. Les Mapped Types sont souvent utilisés pour effectuer des opérations de transformation ou de manipulation sur les types.
+
+Voici un exemple simple d'utilisation d'un Mapped Type :
+
+```typescript
+// Définition d'un Mapped Type
+type Nullable<T> = {
+  [K in keyof T]: T[K] | null;
+};
+
+// Utilisation du Mapped Type
+interface Person {
+  name: string;
+  age: number;
+  address: string;
+}
+
+type NullablePerson = Nullable<Person>;
+/*
+{
+  name: string | null;
+  age: number | null;
+  address: string | null;
+}
+*/
+```
+
+> Dans cet exemple, nous définissons un Mapped Type appelé Nullable. Le Mapped Type prend un paramètre générique T et utilise une boucle for...in pour itérer sur les propriétés de T. À chaque itération, il crée une nouvelle propriété dans le nouveau type avec le même nom et le type correspondant à T[K] | null.
+
+> En utilisant le Mapped Type Nullable avec l'interface Person, nous obtenons un nouveau type NullablePerson où chaque propriété de Person est rendue nullable grâce à l'ajout de null comme type possible.
+
+> Les Mapped Types offrent une grande flexibilité et permettent de créer des types dérivés à partir de types existants en appliquant des transformations aux propriétés. Ils sont souvent utilisés pour créer des versions optionnelles, immuables ou d'autres variations d'un type existant.
+
+> Il existe plusieurs opérations et techniques avancées pour manipuler et combiner les Mapped Types afin de répondre à des besoins spécifiques.
