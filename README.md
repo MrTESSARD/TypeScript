@@ -1482,3 +1482,47 @@ console.log(roger); // Affiche: [Object]
 > En créant une instance de Roger avec new Roger(), nous pouvons utiliser toutes les fonctionnalités ajoutées par les Mixins. Par exemple, nous appelons la méthode speak qui affiche "Je parle." et la méthode telepathy qui affiche "Je communique sans parler. J'ai 5000 ans." Nous accédons également à la propriété age et affichons sa valeur.
 
 > Les Mixins permettent de combiner des fonctionnalités de manière flexible et réutilisable, offrant ainsi une alternative à l'héritage classique pour étendre le comportement d'une classe.
+
+## 88. Singleton Design Pattern - Private Constructor
+
+Le Singleton Design Pattern est un patron de conception couramment utilisé pour garantir qu'une classe n'a qu'une seule instance et fournir un point d'accès global à cette instance.
+
+En TypeScript, on peut implémenter le Singleton Design Pattern en utilisant un constructeur privé pour empêcher la création directe d'instances de la classe. Au lieu de cela, on fournit une méthode statique qui retourne toujours la même instance de la classe.
+
+Voici un exemple d'implémentation du Singleton Design Pattern avec un constructeur privé :
+
+```typescript
+class Singleton {
+  private static instance: Singleton;
+
+  private constructor() {
+    // Constructeur privé pour empêcher la création directe d'instances
+  }
+
+  public static getInstance(): Singleton {
+    if (!Singleton.instance) {
+      Singleton.instance = new Singleton();
+    }
+    return Singleton.instance;
+  }
+
+  public someMethod(): void {
+    console.log("Méthode du Singleton");
+  }
+}
+
+// Utilisation du Singleton
+const singletonInstance1 = Singleton.getInstance();
+const singletonInstance2 = Singleton.getInstance();
+
+console.log(singletonInstance1 === singletonInstance2); // true
+singletonInstance1.someMethod(); // Affiche : Méthode du Singleton
+```
+
+> Dans cet exemple, la classe Singleton a un constructeur privé, ce qui signifie qu'il n'est pas possible de créer directement des instances de cette classe à l'extérieur de la classe elle-même.
+
+> La méthode statique getInstance est utilisée pour obtenir l'instance unique de la classe Singleton. Si aucune instance n'a été créée auparavant, la méthode crée une nouvelle instance et la stocke dans la variable statique instance. Sinon, elle renvoie simplement l'instance existante.
+
+> L'utilisation du Singleton se fait en appelant la méthode getInstance. Comme la classe ne peut avoir qu'une seule instance, les variables singletonInstance1 et singletonInstance2 font référence à la même instance. En conséquence, singletonInstance1 === singletonInstance2 est évalué à true.
+
+> Le Singleton Design Pattern est utile dans les situations où il est nécessaire d'avoir une unique instance d'une classe partagée dans toute l'application, par exemple pour gérer des paramètres de configuration, des connexions à une base de données ou d'autres ressources partagées.

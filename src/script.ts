@@ -1,53 +1,34 @@
-// 87. Mixins
+// 88. Singleton Design Pattern - Private Constructor
 
-class Person{
-  speak(){console.log("je parle");  }
-  walk(){console.log("je marche");  }
-
-}
-
-class Alien {
-  telepathy(){console.log("Je communique sans parler");}
+class Company {
+  totalEmployees:number
+  //private : Il s'agit d'un modificateur d'accès qui limite la visibilité de la variable instance à l'intérieur de la classe ou du contexte dans lequel elle est déclarée. Cela signifie que la variable instance ne peut pas être accédée ou modifiée directement en dehors de la classe ou du contexte où elle est déclarée.
+  // static : Il s'agit d'un modificateur qui indique que la variable instance est une variable statique liée à la classe elle-même, et non à une instance spécifique de la classe. Cela signifie que la variable instance est partagée entre toutes les instances de la classe et qu'elle peut être accédée directement à partir de la classe sans avoir besoin d'instancier la classe.
+    // instance : C'est simplement le nom donné à la variable. Vous pouvez la remplacer par le nom de variable de votre choix.
+    // : Company : C'est la déclaration de type qui indique que la variable instance est de type Company, ce qui signifie qu'elle devrait contenir une instance de la classe Company.
+  private static instance :Company
   
+    private constructor(total:number) {
+    this.totalEmployees=total
+    
+  }
+  static getInstance(){
+if (this.instance) {
+  return this.instance
 }
-
-// class Roger extends Person, Alien {//pas possible
-  
-// }
-interface Roger extends Person, Alien {// possible pour une interface 
-  
-}
-const test:Roger={//déclarons une variable test de type "Roger" et lui attribuons un objet qui implémente les membres requis par l'interface "Roger". Dans cet exemple, nous fournissons des implémentations vides pour les méthodes speak(), walk(), et telepathy()
-  speak():void{ },
-  walk():void{},
-  telepathy():void{}
-}
-
-type Class = new(...arg:any[])=>any
-
-function PersonMixin<Base extends Class>(base:Base) {
-  return class extends base{
-    speak(){console.log("je parle");  }
-    walk(){console.log("je marche");  }
+this.instance=new Company(200)
+return this.instance
   }
 }
-function AlienMixin<Base extends Class>(base:Base) {
-  return class extends base{
-    telepathy(){console.log(`Je communique sans parler. j'ai ${this.age}`);}
+// const company = new Company(100) //impossible
+// console.log(company);
+// const company2 = new Company(200)
+// console.log(company);
 
-  }
-}
-
-const Roger = PersonMixin(AlienMixin(class{
-age:number=5000//je peux ajouter en plus des propriétés et des mthodes 
-}))
-
-const roger = new Roger()
-roger.speak()
-roger.telepathy()
-console.log(roger.age);
-console.log(roger
-  );
+const company =Company.getInstance()
+const company2 =Company.getInstance()
+console.log(company);//200 impossible d'instancier et c'est toujour la même classe
+console.log(company2);//200
 
 
 
